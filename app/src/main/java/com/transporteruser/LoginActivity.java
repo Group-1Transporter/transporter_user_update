@@ -14,10 +14,10 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private  static  final int RC_SIGN_IN = 123;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         boolean isInternetConnected = NetworkUtility.checkInternetConnection(LoginActivity.this);
         if(isInternetConnected) {
             List<AuthUI.IdpConfig> providers = Arrays.asList(
