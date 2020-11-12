@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Toast.makeText(this,"signin Success",Toast.LENGTH_SHORT).show();
-                Intent in=new Intent(LoginActivity.this,CreateProfileActivity.class);
+                Intent in=new Intent(LoginActivity.this,MainActivity.class);
                 in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(in);
                 finish();

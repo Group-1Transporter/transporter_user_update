@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@drawable/background_currentload">
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/ll"
+        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transporter Name"
+        android:textSize="16sp"
+        android:id="@+id/tv_transporter"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/text_view"
+            android:text="Indore"
+            android:textSize="16sp"
+            android:id="@+id/tv_locationStart"
+            />
+        <TextView
+            style="@style/text_view"
+            android:textSize="16sp"
+            android:text=" To "
+            />
+        <TextView
+            style="@style/text_view"
+            android:text="Bhopal"
+            android:textSize="16sp"
+            android:id="@+id/tv_locationEnd"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/text_view"
+            android:text="Materal :- "
+            android:textSize="16sp"
+            />
+
+        <TextView
+            style="@style/text_view"
+            android:text="Steel"
+            android:textSize="16sp"
+            android:id="@+id/tv_material"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/text_view"
+            android:text="Quntity :- "
+            android:textSize="16sp"
+            />
+
+        <TextView
+            style="@style/text_view"
+            android:text="10 Ton"
+            android:textSize="16sp"
+            android:id="@+id/tv_quntity"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/text_view"
+            android:text="Amount :- "
+            />
+
+        <TextView
+            style="@style/text_view"
+            android:text="10000/-"
+            android:id="@+id/tv_rate"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            style="@style/text_view"
+            android:text="Date :- "
+            />
+
+        <TextView
+            style="@style/text_view"
+            android:text="10/2/2020"
+            android:id="@+id/tv_date"
+            />
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/check_circle"
+        android:layout_gravity="end"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_centerInParent="true"
+
+        />
+
+</RelativeLayout>
