@@ -23,23 +23,33 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.transporteruser.api.UserService;
+import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ActivityMainBinding;
 import com.transporteruser.fragement.HistoryFragement;
 import com.transporteruser.fragement.HomeFragement;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     CreateProfileActivity createProfileActivity;
     ActionBarDrawerToggle toggle;
     SharedPreferences sp = null;
+    String currentUserId;
+    FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding =ActivityMainBinding.inflate(LayoutInflater.from(this));
+        currentUserId = FirebaseAuth.getInstance().getUid();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
         setContentView(binding.getRoot());
         sp = getSharedPreferences("user",MODE_PRIVATE);
-//        createProfileActivity.binding.createProfile.PreferenceManager.getDefaultSharedPreferences(this);
-//        sp.getAll();
         binding.navDrawer.setItemIconTintList(null);
         binding.bottomNav.setItemIconTintList(null);
         toggle = new ActionBarDrawerToggle(this,binding.drawer,binding.toolbar,R.string.open,R.string.close);
@@ -133,4 +143,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(currentUser == null){
+            Intent i = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+        else
+           checkUserProfileCreatedOrNot();
+    }
+    private void checkUserProfileCreatedOrNot(){
+       String status = sp.getString("userId","not_created");
+       if(status.equals("not_created"))
+           sendUserToCreateProfile();
+
+    }
+    private void sendUserToCreateProfile(){
+        Intent in = new Intent(MainActivity.this,CreateProfileActivity.class);
+        startActivity(in);
+    }
 }

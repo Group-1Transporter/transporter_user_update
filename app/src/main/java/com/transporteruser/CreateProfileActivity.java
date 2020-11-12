@@ -3,6 +3,7 @@ package com.transporteruser;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,6 +21,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.PermissionChecker;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ActivityCreateProfileBinding;
@@ -36,13 +38,15 @@ import retrofit2.Response;
 public class CreateProfileActivity extends AppCompatActivity {
     ActivityCreateProfileBinding binding;
     Uri imageUri;
-
+    String currentUserId;
+    SharedPreferences sp = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boolean isInternetConnected = NetworkUtility.checkInternetConnection(CreateProfileActivity.this);
+        sp = getSharedPreferences("user",MODE_PRIVATE);
         if (isInternetConnected) {
-
+            currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             binding = ActivityCreateProfileBinding.inflate(LayoutInflater.from(this));
             setContentView(binding.getRoot());
 
@@ -63,62 +67,74 @@ public class CreateProfileActivity extends AppCompatActivity {
             binding.createProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String name = binding.userName.getText().toString();
-                    if (TextUtils.isEmpty(name)) {
-                        binding.userName.setError("Username required");
-                    }
-                    String address = binding.address.getText().toString();
-                    if (TextUtils.isEmpty(address)) {
-                        binding.address.setError("address is required ");
-                    }
-                    String phoneNumber = binding.phoneNumber.getText().toString();
-                    if (TextUtils.isEmpty(phoneNumber))
-                        binding.phoneNumber.setError("Phone number is required");
-                    String token = "4324343434343432432434343434";
-                    if (imageUri != null) {
-                        File file = FileUtils.getFile(CreateProfileActivity.this, imageUri);
-                        RequestBody requestFile =
-                                RequestBody.create(
-                                        MediaType.parse(getContentResolver().getType(imageUri)),
-                                        file
-                                );
+                  if(NetworkUtility.checkInternetConnection(CreateProfileActivity.this)) {
+                      String name = binding.userName.getText().toString();
+                      if (TextUtils.isEmpty(name)) {
+                          binding.userName.setError("Username required");
+                      }
+                      String address = binding.address.getText().toString();
+                      if (TextUtils.isEmpty(address)) {
+                          binding.address.setError("address is required ");
+                      }
+                      String phoneNumber = binding.phoneNumber.getText().toString();
+                      if (TextUtils.isEmpty(phoneNumber))
+                          binding.phoneNumber.setError("Phone number is required");
+                      String token = "4324343434343432432434343434";
+                      if (imageUri != null) {
+                          File file = FileUtils.getFile(CreateProfileActivity.this, imageUri);
+                          RequestBody requestFile =
+                                  RequestBody.create(
+                                          MediaType.parse(getContentResolver().getType(imageUri)),
+                                          file
+                                  );
 
-                        MultipartBody.Part body =
-                                MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+                          MultipartBody.Part body =
+                                  MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
-                        RequestBody userName = RequestBody.create(
-                                okhttp3.MultipartBody.FORM, name);
+                          RequestBody userId = RequestBody.create(okhttp3.MultipartBody.FORM, currentUserId);
 
-                        RequestBody userAddress = RequestBody.create(okhttp3.MultipartBody.FORM, address);
+                          RequestBody userName = RequestBody.create(okhttp3.MultipartBody.FORM, name);
 
-                        RequestBody userContact = RequestBody.create(okhttp3.MultipartBody.FORM, phoneNumber);
+                          RequestBody userAddress = RequestBody.create(okhttp3.MultipartBody.FORM, address);
 
-                        RequestBody userToken = RequestBody.create(okhttp3.MultipartBody.FORM, token);
+                          RequestBody userContact = RequestBody.create(okhttp3.MultipartBody.FORM, phoneNumber);
 
-                        UserService.UserApi userApi = UserService.getUserApiInstance();
-                        Call<User> call = userApi.saveProfile(body, userName, userAddress, userContact, userToken);
+                          RequestBody userToken = RequestBody.create(okhttp3.MultipartBody.FORM, token);
 
-                        call.enqueue(new Callback<User>() {
-                            @Override
-                            public void onResponse(Call<User> call, Response<User> response) {
-                                if (response.code() == 200) {
-                                    User user = response.body();
-                                    Toast.makeText(CreateProfileActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(CreateProfileActivity.this,MainActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
+                          UserService.UserApi userApi = UserService.getUserApiInstance();
+                          Call<User> call = userApi.saveProfile(body, userId, userName, userAddress, userContact, userToken);
 
-                            @Override
-                            public void onFailure(Call<User> call, Throwable t) {
-                                Toast.makeText(CreateProfileActivity.this, "Failed : " + t, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    } else
-                        Toast.makeText(CreateProfileActivity.this, "Please select profile pic", Toast.LENGTH_SHORT).show();
+                          call.enqueue(new Callback<User>() {
+                              @Override
+                              public void onResponse(Call<User> call, Response<User> response) {
+                                  if (response.code() == 200) {
+                                      User user = response.body();
+                                      saveDataLocally(user);
+                                      Toast.makeText(CreateProfileActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                      Intent intent = new Intent(CreateProfileActivity.this, MainActivity.class);
+                                      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                      startActivity(intent);
+                                      finish();
+                                  }
+                              }
+
+                              @Override
+                              public void onFailure(Call<User> call, Throwable t) {
+                                  Toast.makeText(CreateProfileActivity.this, "Failed : " + t, Toast.LENGTH_SHORT).show();
+                              }
+                          });
+                      } else
+                          Toast.makeText(CreateProfileActivity.this, "Please select profile pic", Toast.LENGTH_SHORT).show();
+
+                  }
+                  else
+                  {
+                      Toast.makeText(CreateProfileActivity.this, "Please enable internet connection", Toast.LENGTH_SHORT).show();
+                  }
                 }
+
+
+
             });
         }
         else {
@@ -145,5 +161,15 @@ public class CreateProfileActivity extends AppCompatActivity {
             imageUri = data.getData();
             binding.civ.setImageURI(imageUri);
         }
+    }
+    private void saveDataLocally(User user){
+        SharedPreferences.Editor editor =sp.edit();
+        editor.putString("name",user.getName());
+        editor.putString("address",user.getAddress());
+        editor.putString("contactNumber",user.getContactNumber());
+        editor.putString("token",user.getToken());
+        editor.putString("imageUrl",user.getImageUrl());
+        editor.putString("userId",user.getUserId());
+        editor.commit();
     }
 }
