@@ -1,5 +1,6 @@
 package com.transporteruser.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.transporteruser.ChatActivity;
+import com.transporteruser.MainActivity;
+import com.transporteruser.PrivacyPolicy;
 import com.transporteruser.bean.Lead;
 import com.transporteruser.databinding.CurrentAndConfirmedListBinding;
 
@@ -31,16 +35,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final HomeViewHolder holder, int position) {
-        Lead lead = list.get(position);
-        Toast.makeText(holder.itemView.getContext(), ""+ lead.getTypeOfMaterial(), Toast.LENGTH_SHORT).show();
-
+        final Lead lead = list.get(position);
         if(lead !=null && lead.getStatus().equals("")) {
             holder.binding.llCurrentLoad.setVisibility(View.VISIBLE);
             holder.binding.llConfirmLoad.setVisibility(View.GONE);
-            holder.binding.tvCLLocation.setText(lead.getPickUpAddress());
-            holder.binding.tvCLLocationDestination.setText(lead.getDeliveryAddress());
+            String str[]=lead.getPickUpAddress().split(" ");
+            String pickup=str[str.length-1];
+            str=lead.getDeliveryAddress().split(" ");
+            String delivery =str[str.length-1];
+            holder.binding.tvCLLocation.setText(pickup);
+            holder.binding.tvCLLocationDestination.setText(delivery);
             holder.binding.tvCLMaterialType.setText(lead.getTypeOfMaterial());
-            Toast.makeText(holder.itemView.getContext(), ""+ lead.getBidCount(), Toast.LENGTH_SHORT).show();
             if (lead.getBidCount() == null)
                 holder.binding.llCounter.setVisibility(View.GONE);
             else{
@@ -86,7 +91,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                         public boolean onMenuItemClick(MenuItem menuItem) {
                             String title = menuItem.getTitle().toString();
                             if(title.equals("Chat with Client")){
-                                Toast.makeText(holder.itemView.getContext(), "Chat with Client", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(holder.itemView.getContext(), ChatActivity.class);
+                                i.putExtra("transporterId",lead.getDealLockedWith());
+                                holder.itemView.getContext().startActivity(i);
                             }else if (title.equals("Cancel")){
                                 Toast.makeText(holder.itemView.getContext(), "Cancel", Toast.LENGTH_SHORT).show();
                             }
@@ -97,12 +104,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                 }
             });
             holder.binding.tvTransporterName.setText(""+lead.getTransporterName());
-            holder.binding.tvLocation.setText(lead.getPickUpAddress());
-            holder.binding.tvLocationDestination.setText(lead.getDeliveryAddress());
+            String str[]=lead.getPickUpAddress().split(" ");
+            String pickup=str[str.length-1];
+            str=lead.getDeliveryAddress().split(" ");
+            String delivery =str[str.length-1];
+            holder.binding.tvLocation.setText(pickup);
+            holder.binding.tvLocationDestination.setText(delivery);
             holder.binding.tvMaterialType.setText(lead.getTypeOfMaterial());
             holder.binding.tvPickUpContact.setText(lead.getContactForPickup());
             holder.binding.tvDeliveryContact.setText(lead.getContactForDelivery());
 
+        }else{
+            holder.binding.main.setVisibility(View.GONE);
         }
 
     }

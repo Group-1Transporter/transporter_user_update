@@ -42,7 +42,6 @@ public class HomeFragement extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<Lead>> call, Response<ArrayList<Lead>> response) {
                 ArrayList<Lead> list = response.body();
-                Toast.makeText(context, "" + list.size(), Toast.LENGTH_SHORT).show();
                 adapter = new HomeAdapter(list);
                 binding.rv.setAdapter(adapter);
                 binding.rv.setLayoutManager(new LinearLayoutManager(context));

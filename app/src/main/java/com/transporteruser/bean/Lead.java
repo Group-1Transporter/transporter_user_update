@@ -4,7 +4,9 @@ package com.transporteruser.bean;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Lead {
+import java.io.Serializable;
+
+public class Lead implements Serializable {
 
     @SerializedName("userId")
     @Expose

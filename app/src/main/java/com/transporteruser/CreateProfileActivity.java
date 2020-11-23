@@ -22,6 +22,8 @@ import androidx.core.content.PermissionChecker;
 
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdReceiver;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ActivityCreateProfileBinding;
@@ -40,10 +42,12 @@ public class CreateProfileActivity extends AppCompatActivity {
     Uri imageUri;
     String currentUserId;
     SharedPreferences sp = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boolean isInternetConnected = NetworkUtility.checkInternetConnection(CreateProfileActivity.this);
+
         sp = getSharedPreferences("user",MODE_PRIVATE);
         if (isInternetConnected) {
             currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -79,7 +83,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                       String phoneNumber = binding.phoneNumber.getText().toString();
                       if (TextUtils.isEmpty(phoneNumber))
                           binding.phoneNumber.setError("Phone number is required");
-                      String token = "4324343434343432432434343434";
+                      String token = FirebaseInstanceId.getInstance().getToken();
                       if (imageUri != null) {
                           File file = FileUtils.getFile(CreateProfileActivity.this, imageUri);
                           RequestBody requestFile =
@@ -110,7 +114,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                                   if (response.code() == 200) {
                                       User user = response.body();
                                       saveDataLocally(user);
-                                      Toast.makeText(CreateProfileActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                      //Toast.makeText(CreateProfileActivity.this, "Success", Toast.LENGTH_SHORT).show();
                                       Intent intent = new Intent(CreateProfileActivity.this, MainActivity.class);
                                       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                       startActivity(intent);
@@ -150,7 +154,6 @@ public class CreateProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         return super.onOptionsItemSelected(item);
     }
 
