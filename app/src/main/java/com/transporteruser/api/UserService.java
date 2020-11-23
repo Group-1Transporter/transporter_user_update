@@ -1,7 +1,9 @@
 package com.transporteruser.api;
 
 
+import com.transporteruser.bean.Bid;
 import com.transporteruser.bean.Lead;
+import com.transporteruser.bean.Transporter;
 import com.transporteruser.bean.User;
 
 import java.util.ArrayList;
@@ -42,10 +44,23 @@ public class UserService {
                                       @Part("token") RequestBody token);
 
         //check user profile created or not
-        @GET("/user/checkProfile/{userId}")
-        public Call<User> checkProfile(@Path("userId") String userId);
+        @GET("/user/{id}")
+        public Call<User> checkProfile(@Path("id") String id);
 
         @GET("/lead/all-lead/{userId}")
         public Call<ArrayList<Lead>> getAllLeads(@Path("userId")String userId);
+
+        @GET("/lead/completed-lead/{userId}")
+        public  Call<ArrayList<Lead>> getAllCompletedLeadsByUserId(@Path("userId")String userId);
+
+        @GET("/lead/completed-lead/{userId}")
+        public  Call<ArrayList<Lead>> getAllCreatedLeadsByUserId(@Path("userId")String userId);
+
+        @GET("/bid/{leadId}")
+        public  Call<ArrayList<Bid>> getAllBidsByLeadId(@Path("leadId")String leadId);
+
+
+        @GET("transporter/{id}")
+        public Call<Transporter> getCurrentTransporter(@Path("id") String id);
     }
 }
