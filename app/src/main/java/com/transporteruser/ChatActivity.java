@@ -1,6 +1,7 @@
 package com.transporteruser;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,8 +35,12 @@ import com.transporteruser.bean.Transporter;
 import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ChatActivityBinding;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,16 +52,20 @@ public class ChatActivity extends AppCompatActivity {
     String currentUserId;
     DatabaseReference firebaseDatabase;
     MessageAdapter adapter;
+    Transporter transporter;
     ArrayList<Message>al;
+    String name;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ChatActivityBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
+        SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+        name = sp.getString("name","");
         setSupportActionBar(binding.toolbar);
         Intent in = getIntent();
         currentUserId = FirebaseAuth.getInstance().getUid();
-        transporterId = (String) in.getCharSequenceExtra("transporterId");
+        transporterId = in.getStringExtra("transporterId");
         UserService.UserApi userApi = UserService.getUserApiInstance();
         Call<Transporter> call = userApi.getCurrentTransporter(transporterId);
         if (NetworkUtility.checkInternetConnection(this)) {
@@ -59,7 +74,7 @@ public class ChatActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Transporter> call, Response<Transporter> response) {
                     if(response.code() == 200){
-                        Transporter transporter = response.body();
+                        transporter = response.body();
                         getSupportActionBar().setTitle(transporter.getName());
                         Picasso.get().load(transporter.getImageUrl()).into(binding.civUser);
                     }
@@ -148,4 +163,46 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void notification(Message message){
+        String token = transporter.getToken();
+        try{
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = "https://fcm.googleapis.com/fcm/send";
+
+            JSONObject data = new JSONObject();
+            data.put("title","New Message send");
+            data.put("body", "From "+name);
+
+            JSONObject notification_data = new JSONObject();
+            notification_data.put("data", data);
+            notification_data.put("to",token);
+
+            JsonObjectRequest request = new JsonObjectRequest(url, notification_data, new com.android.volley.Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                }
+            }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    String api_key_header_value = "AAAAWv788Wk:APA91bFW0Z_ISKSzu2ZD97ouIZde3jHsaKSvxLG2_adRdmaUCeQ5Jv88XpcNa2o06RruMbRIWF0gYgh6VPYknq-ELrXgIEmp3SVeu3YTH_2cVmEDUT3Jbg1u6N5OxsacPVIFKqkkBhyp";
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    headers.put("Authorization", api_key_header_value);
+                    return headers;
+                }
+            };
+            queue.add(request);
+        }catch (Exception e){
+            Toast.makeText(this, ""+e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
