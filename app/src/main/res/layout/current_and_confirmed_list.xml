@@ -4,22 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_cl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Current Load"
+        android:textSize="20sp" />
 
     <LinearLayout
+        android:layout_below="@+id/tv_cl"
         android:id="@+id/llCurrentLoad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/color"
+
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_cl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Current Load"
-            android:textSize="20sp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,8 +31,9 @@
             <ImageView
 
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_weight="1"
+                android:layout_marginTop="3dp"
                 android:src="@drawable/location_red" />
 
             <LinearLayout
@@ -52,20 +52,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Indore"
-                        android:textSize="20sp"
+                        android:singleLine="true"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        style="@style/text_view"
-                        android:text=" To " />
-
-                    <TextView
-                        android:id="@+id/tvCLLocationDestination"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bhopal"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -76,15 +66,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Type :-"
-                        android:textSize="20sp" />
+                        android:text="Type : "
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvCLMaterialType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Steel"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -96,15 +86,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pickup Contact :-"
-                        android:textSize="18sp" />
+                        android:text="Pickup Contact : "
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvCLPickUpContact"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="123 palaciya"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -115,15 +105,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Delivery Contact :-"
-                        android:textSize="18sp" />
+                        android:text="Delivery Contact : "
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/tvCLDeliveryContact"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="456 Saket"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -136,14 +126,14 @@
 
                 <ImageView
                     android:id="@+id/morevertical"
-                    android:layout_width="35dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/more_vert" />
 
                 <LinearLayout
                     android:id="@+id/llCounter"
                     android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     android:background="@drawable/circle"
                     android:gravity="center"
 
@@ -168,17 +158,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/llCurrentLoad"
-        android:background="@drawable/color"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tvConfirmLoad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Confirm Load"
-            android:textSize="20sp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -198,14 +178,16 @@
 
                     android:id="@+id/userlogo"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/user_logo" />
 
                 <ImageView
 
                     android:id="@+id/ivLocation"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
                     android:src="@drawable/location_red" />
 
             </LinearLayout>
@@ -221,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Transporter Name"
-                    android:textSize="22sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
 
@@ -235,20 +217,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Indore"
-                        android:textSize="20sp"
+                        android:singleLine="true"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        style="@style/text_view"
-                        android:text=" To " />
-
-                    <TextView
-                        android:id="@+id/tvLocationDestination"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bhopal"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -259,14 +231,15 @@
 
                     <TextView
                         style="@style/text_view"
-                        android:text="Type :- " />
+                        android:text="Type : "
+                        android:textSize="12sp"/>
 
                     <TextView
                         android:id="@+id/tvMaterialType"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Steel"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -276,14 +249,15 @@
 
                     <TextView
                         style="@style/text_view"
-                        android:text="Pickup Contract :- " />
+                        android:text="Pickup Contract : "
+                        android:textSize="12sp"/>
 
                     <TextView
                         android:id="@+id/tvPickUpContact"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="123"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -293,14 +267,15 @@
 
                     <TextView
                         style="@style/text_view"
-                        android:text="Delevery Contact :- " />
+                        android:textSize="12sp"
+                        android:text="Delevery Contact: " />
 
                     <TextView
                         android:id="@+id/tvDeliveryContact"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="456"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -310,14 +285,15 @@
 
                     <TextView
                         style="@style/text_view"
-                        android:text="Amount :- " />
+                        android:text="Amount: "
+                        android:textSize="12sp"/>
 
                     <TextView
                         android:id="@+id/tvAmount"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="10000"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -327,14 +303,15 @@
 
                     <TextView
                         style="@style/text_view"
-                        android:text="Progress Status :- " />
+                        android:text="Progress Status : "
+                        android:textSize="12sp"/>
 
                     <TextView
                         android:id="@+id/tvProgressStatus"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="Complete"
-                        android:textSize="18sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -347,15 +324,12 @@
 
                 <ImageView
                     android:id="@+id/more"
-                    android:layout_width="35dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/more_vert" />
 
 
             </LinearLayout>
-
         </LinearLayout>
-
-
     </LinearLayout>
 </RelativeLayout>

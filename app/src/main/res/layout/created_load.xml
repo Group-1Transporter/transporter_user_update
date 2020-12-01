@@ -2,26 +2,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp"
+        >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_currentload"
-        android:layout_margin="10dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:weightSum="10">
+        android:layout_gravity="center_vertical"
+
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"
+        >
 
         <ImageView
 
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             android:layout_weight="1"
             android:src="@drawable/location_red" />
 
@@ -41,7 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Indore"
-                    android:textSize="20sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
 
@@ -56,14 +59,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Material Type :-"
-                    android:textSize="20sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tvCLMaterialType"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Steel"
-                    android:textSize="18sp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -76,14 +79,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pickup Contact :-"
-                    android:textSize="18sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tvCLPickUpContact"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="123 palaciya"
-                    android:textSize="18sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -95,14 +98,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Delivery Contact :-"
-                    android:textSize="18sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tvCLDeliveryContact"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="456 Saket"
-                    android:textSize="18sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -113,14 +116,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Quntity :-"
-                    android:textSize="18sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tvQuntity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="10 ton"
-                    android:textSize="18sp" />
+                    android:textSize="13sp" />
             </LinearLayout>
 
 
@@ -130,12 +133,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginRight="10dp">
 
             <ImageView
                 android:id="@+id/morevertical"
-                android:layout_width="35dp"
-                android:layout_height="50dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="center"
                 android:src="@drawable/more_vert" />
 
             <LinearLayout
@@ -144,19 +150,21 @@
                 android:layout_height="40dp"
                 android:background="@drawable/circle"
                 android:gravity="center"
-
+                android:layout_marginLeft="5dp"
                 >
 
                 <TextView
                     android:id="@+id/tvCounter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:text="5" />
 
             </LinearLayout>
 
 
         </LinearLayout>
+
     </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

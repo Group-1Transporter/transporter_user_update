@@ -33,12 +33,15 @@
         android:background="@drawable/border"
         android:layout_below="@id/civ"
         android:padding="10dp"
+        android:textCursorDrawable="@null"
         android:layout_marginTop="35dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:inputType="number"
+        android:maxLength="10"
         android:id="@+id/phoneNumber"
         android:hint="Phone Number"
         android:drawableEnd="@drawable/phone"
@@ -46,6 +49,7 @@
         android:background="@drawable/border"
         android:layout_below="@id/userName"
         android:padding="10dp"
+        android:textCursorDrawable="@null"
         android:layout_marginTop="20dp"/>
     <EditText
         android:layout_width="match_parent"
@@ -56,6 +60,7 @@
         android:id="@+id/address"
         android:lines="3"
         android:hint="Address"
+        android:textCursorDrawable="@null"
         android:background="@drawable/border"
         android:layout_below="@id/phoneNumber"
         android:padding="10dp"
