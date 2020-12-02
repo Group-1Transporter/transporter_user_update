@@ -2,6 +2,7 @@ package com.transporteruser;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -71,7 +73,10 @@ public class CreateProfileActivity extends AppCompatActivity {
             binding.createProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                  if(NetworkUtility.checkInternetConnection(CreateProfileActivity.this)) {
+                  if(NetworkUtility.checkInternetConnection(CreateProfileActivity.this)) { 
+                      final ProgressDialog pd = new ProgressDialog(CreateProfileActivity.this);
+                      pd.setTitle("Please Wait");
+                      pd.show();
                       String name = binding.userName.getText().toString();
                       if (TextUtils.isEmpty(name)) {
                           binding.userName.setError("Username required");
@@ -92,6 +97,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                                           file
                                   );
 
+
                           MultipartBody.Part body =
                                   MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
@@ -111,6 +117,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                           call.enqueue(new Callback<User>() {
                               @Override
                               public void onResponse(Call<User> call, Response<User> response) {
+                                  pd.dismiss();
                                   if (response.code() == 200) {
                                       User user = response.body();
                                       saveDataLocally(user);
@@ -124,6 +131,7 @@ public class CreateProfileActivity extends AppCompatActivity {
 
                               @Override
                               public void onFailure(Call<User> call, Throwable t) {
+                                  pd.dismiss();
                                   Toast.makeText(CreateProfileActivity.this, "Failed : " + t, Toast.LENGTH_SHORT).show();
                               }
                           });
@@ -131,6 +139,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                           Toast.makeText(CreateProfileActivity.this, "Please select profile pic", Toast.LENGTH_SHORT).show();
 
                   }
+
                   else
                   {
                       Toast.makeText(CreateProfileActivity.this, "Please enable internet connection", Toast.LENGTH_SHORT).show();

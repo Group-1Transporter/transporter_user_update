@@ -9,22 +9,30 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.transporteruser.BidShowActivity;
+import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Bid;
+import com.transporteruser.bean.Lead;
 import com.transporteruser.databinding.BidShowBinding;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class BidShowAdapter extends RecyclerView.Adapter<BidShowAdapter.BidsViewHolder> {
-
+    Lead lead;
     ArrayList<Bid> bidList;
+    OnRecycleViewClickListener listener;
 
-    public BidShowAdapter(ArrayList<Bid> bidList) {
+    public BidShowAdapter(ArrayList<Bid> bidList,Lead lead) {
         this.bidList = bidList;
+        this.lead = lead;
     }
 
     @NonNull
     @Override
-    public BidsViewHolder  onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BidsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         BidShowBinding binding = BidShowBinding.inflate(LayoutInflater.from(parent.getContext()));
         BidsViewHolder bidsViewHolder = new BidsViewHolder(binding);
         return bidsViewHolder;
@@ -33,28 +41,48 @@ public class BidShowAdapter extends RecyclerView.Adapter<BidShowAdapter.BidsView
     @Override
     public void onBindViewHolder(@NonNull BidsViewHolder holder, int position) {
 
-        Bid bid =bidList.get(position);
-
-        holder.binding.tvTransporterName.setText(bid.getTransporterName());
-        holder.binding.tvRate.setText(bid.getAmount());
+        Bid bid = bidList.get(position);
         holder.binding.tvDate.setText(bid.getEstimatedDate());
-        //holder.binding.tvCLMaterialType.setText(bid.get);
-        //holder.binding.tvQuntity.setText(bid.getquntity);
-        holder.binding.tvRemark.setText(bid.getRemark());
+        holder.binding.tvMaterialType.setText(lead.getTypeOfMaterial());
+        holder.binding.tvQuntity.setText(lead.getWeight());
+        holder.binding.tvPickUpContact.setText(lead.getContactForPickup());
+        holder.binding.tvDeliveryContact.setText(lead.getContactForDelivery());
     }
 
     @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return bidList.size();
     }
 
 
     public class BidsViewHolder extends RecyclerView.ViewHolder {
         BidShowBinding binding;
-        public BidsViewHolder(BidShowBinding binding){
+
+        public BidsViewHolder(BidShowBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
+            binding.moreButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onClickListener(bidList.get(position), position);
+                    }
+                }
+            });
         }
     }
+
+    public interface OnRecycleViewClickListener {
+        public void onClickListener(Bid bid, int position);
+
+    }
+
+    public void onBidShowClickListener(OnRecycleViewClickListener listener) {
+        this.listener = listener;
+    }
+
+
 }

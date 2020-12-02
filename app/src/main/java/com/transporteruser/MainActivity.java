@@ -164,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
         if (status.equals("not_created")) {
             UserService.UserApi userApi = UserService.getUserApiInstance();
             Call<User> call = userApi.checkProfile(currentUserId);
-            Toast.makeText(MainActivity.this, "hwllo dud", Toast.LENGTH_SHORT).show();
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {

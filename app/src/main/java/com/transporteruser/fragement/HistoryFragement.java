@@ -22,6 +22,7 @@ import com.transporteruser.NetworkUtility;
 import com.transporteruser.R;
 import com.transporteruser.adapters.CompletedLoadShowAdapter;
 import com.transporteruser.adapters.CreatedLeadShowAdapter;
+import com.transporteruser.adapters.HomeAdapter;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
 import com.transporteruser.databinding.HistoryFragementBinding;
@@ -40,7 +41,7 @@ public class HistoryFragement extends Fragment {
     CompletedLoadShowAdapter adapter;
     String currentUserId ;
     SharedPreferences sp = null;
-    CreatedLeadShowAdapter createAdapter;
+    HomeAdapter createAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,17 +72,17 @@ public class HistoryFragement extends Fragment {
                 if(response.code() == 200){
                     ArrayList<Lead> leadList = response.body();
                     if (!leadList.isEmpty()){
-                        createAdapter = new CreatedLeadShowAdapter(leadList);
+                        createAdapter = new HomeAdapter(leadList);
                         binding.rv.setAdapter(createAdapter);
                         binding.rv.setLayoutManager(new LinearLayoutManager(getContext()));
-                        createAdapter.clickOnRecyclerView(new CreatedLeadShowAdapter.OnRecyclerViewClickListner() {
-                            @Override
-                            public void onItemClick(Lead lead, int position) {
-                                Intent in = new Intent(getContext(), BidShowActivity.class);
-                                in.putExtra("lead",lead);
-                                startActivity(in);
-                            }
-                        });
+//                        createAdapter.clickOnRecyclerView(new CreatedLeadShowAdapter.OnRecyclerViewClickListner() {
+//                            @Override
+//                            public void onItemClick(Lead lead, int position) {
+//                                Intent in = new Intent(getContext(), BidShowActivity.class);
+//                                in.putExtra("lead",lead);
+//                                startActivity(in);
+//                            }
+//                        });
                     }
                 }
             }
