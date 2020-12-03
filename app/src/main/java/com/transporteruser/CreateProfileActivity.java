@@ -49,7 +49,6 @@ public class CreateProfileActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         boolean isInternetConnected = NetworkUtility.checkInternetConnection(CreateProfileActivity.this);
-
         sp = getSharedPreferences("user",MODE_PRIVATE);
         if (isInternetConnected) {
             currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();

@@ -25,6 +25,7 @@ import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ActivityCreateProfileBinding;
 
 import java.io.File;
+import java.security.PKCS12Attribute;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -107,6 +108,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                     call.enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
+                            pd.dismiss();
                             try {
                                 int status = response.code();
                                 if (status == 200) {
@@ -119,8 +121,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                 }
                             } catch (Exception e){
                                 Toast.makeText(UpdateProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                            }finally {
-                                pd.dismiss();
                             }
 
                         }
@@ -158,10 +158,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(imageUri)),file);
                 MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
                 RequestBody userId = RequestBody.create(MultipartBody.FORM,currentUserId);
+                final ProgressDialog pd = new ProgressDialog(UpdateProfileActivity.this);
+                pd.setMessage("please wait...");
+                pd.show();
                 Call<User> call = userApi.updateImage(body, userId);
                 call.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
+                        pd.dismiss();
                         if (response.code() == 200){
                             binding.civ.setImageURI(imageUri);
                             SharedPreferences.Editor editor = sp.edit();
@@ -176,6 +180,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
+                        pd.dismiss();
                         Toast.makeText(UpdateProfileActivity.this, ""+t, Toast.LENGTH_SHORT).show();
                     }
                 });

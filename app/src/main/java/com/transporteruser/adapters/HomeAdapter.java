@@ -124,7 +124,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                             }else if (title.equals("Delete")){
                                 if(position != RecyclerView.NO_POSITION && listner != null)
                                     listner.onClick(list.get(position),position,"Delete");
-                            }
+                            } 
                             return true;
                         }
                     });

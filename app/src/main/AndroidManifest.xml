@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".BidShowActivity" android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".UpdateProfileActivity" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".AddLoadActivity"/>
+        <activity android:name=".AddLoadActivity" android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".PrivacyPolicy"
             android:parentActivityName=".MainActivity" />
@@ -36,7 +36,7 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CreateProfileActivity" />
+        <activity android:name=".CreateProfileActivity" android:parentActivityName=".SplashScreen" />
         <activity android:name=".ChatActivity"/>
     </application>
 

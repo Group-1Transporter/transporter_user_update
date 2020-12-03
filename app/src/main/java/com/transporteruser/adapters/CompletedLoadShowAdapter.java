@@ -39,7 +39,6 @@ public class CompletedLoadShowAdapter extends RecyclerView.Adapter<CompletedLoad
     @Override
     public void onBindViewHolder(@NonNull final CompletedViewHolder holder, int position) {
         final Lead lead = leadList.get(position);
-        Toast.makeText(holder.itemView.getContext(), ""+lead.getDeliveryAddress(), Toast.LENGTH_SHORT).show();
         holder.binding.tvDate.setText(lead.getDateOfCompletion());
         holder.binding.tvTypeOfmaterial.setText(lead.getTypeOfMaterial());
         holder.binding.tvQuntity.setText(lead.getWeight());
@@ -52,7 +51,6 @@ public class CompletedLoadShowAdapter extends RecyclerView.Adapter<CompletedLoad
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        Toast.makeText(holder.itemView.getContext(), "Delete", Toast.LENGTH_SHORT).show();
                         String title = menuItem.getTitle().toString();
                         if (title.equalsIgnoreCase("Delete")){
                             final UserService.UserApi userApi = UserService.getUserApiInstance();
@@ -85,6 +83,7 @@ public class CompletedLoadShowAdapter extends RecyclerView.Adapter<CompletedLoad
                         return false;
                     }
                 });
+                popupMenu.show();
             }
         });
 
@@ -93,15 +92,6 @@ public class CompletedLoadShowAdapter extends RecyclerView.Adapter<CompletedLoad
         str=lead.getDeliveryAddress().split(" ");
         String delivery =str[str.length-1];
         holder.binding.tvAddress.setText(pickup+" To "+delivery);
-//        holder.binding.tvLocationEnd.setText(delivery);
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent in = new Intent(holder.itemView.getContext(), BidShowActivity.class);
-//                in.putExtra("lead",lead);
-//                view.getContext().startActivity(in);
-//            }
-//        });
     }
 
     @Override
