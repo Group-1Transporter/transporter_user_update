@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                                 .signOut(MainActivity.this)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        //Toast.makeText(MainActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(MainActivity.this, LoginActivity.class);
                                         startActivity(i);
                                         SharedPreferences.Editor editor = sp.edit();
@@ -168,11 +167,9 @@ public class MainActivity extends AppCompatActivity {
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
-                    Toast.makeText(MainActivity.this, ""+response.code(), Toast.LENGTH_SHORT).show();
                     if(response.code() == 200){
                         User user = response.body();
                             saveDataLocally(user);
-                            Toast.makeText(MainActivity.this, "Locally save data", Toast.LENGTH_SHORT).show();
                     }else if(response.code() == 404){
                         Toast.makeText(MainActivity.this, "Create Profile", Toast.LENGTH_SHORT).show();
                         sendUserToCreateProfile();

@@ -16,6 +16,8 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
+
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/blue">
 
@@ -43,16 +45,12 @@
         style="@style/editText"
         android:layout_below="@id/materialType"
         android:hint="Weight(optional) :"/>
-    <EditText
-        android:id="@+id/km"
-        android:layout_below="@id/weight"
-        style="@style/editText"
-        android:hint="Distance(IN Kilometer):"/>
+
 
     <EditText
         android:id="@+id/lastDate"
         style="@style/editText"
-        android:layout_below="@id/km"
+        android:layout_below="@id/weight"
         android:focusable="false"
         android:hint="Last Date :"/>
     <TextView

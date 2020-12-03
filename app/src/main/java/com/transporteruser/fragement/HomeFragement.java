@@ -1,6 +1,7 @@
 package com.transporteruser.fragement;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,11 +41,15 @@ public class HomeFragement extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         currentUserId = FirebaseAuth.getInstance().getUid();
         context = container.getContext();
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("please wait...");
+        pd.show();
         UserService.UserApi userApi = UserService.getUserApiInstance();
         binding = HomeFragementBinding.inflate(getLayoutInflater());
         userApi.getCreateAndConfirmed(currentUserId).enqueue(new Callback<ArrayList<Lead>>() {
             @Override
             public void onResponse(Call<ArrayList<Lead>> call, Response<ArrayList<Lead>> response) {
+                pd.dismiss();
                 if(response.code() == 200 ){
                     list = response.body();
                     adapter = new HomeAdapter(list);
@@ -62,6 +67,7 @@ public class HomeFragement extends Fragment {
 
             @Override
             public void onFailure(Call<ArrayList<Lead>> call, Throwable t) {
+                pd.dismiss();
                 Toast.makeText(getContext(), ""+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

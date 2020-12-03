@@ -88,6 +88,12 @@ public class ChatActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "please enable internet connection.", Toast.LENGTH_SHORT).show();
         }
+        binding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 
@@ -115,7 +121,7 @@ public class ChatActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
-                                            Toast.makeText(ChatActivity.this, "Message sent.", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(ChatActivity.this, "Message sent.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
