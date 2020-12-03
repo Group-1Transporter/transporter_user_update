@@ -16,6 +16,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".BidShowActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".UpdateProfileActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".AddLoadActivity"/>
         <activity
             android:name=".PrivacyPolicy"
             android:parentActivityName=".MainActivity" />

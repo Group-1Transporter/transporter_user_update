@@ -1,7 +1,5 @@
 package com.transporteruser.adapters;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,18 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.transporteruser.BidShowActivity;
-import com.transporteruser.ChatActivity;
-import com.transporteruser.MainActivity;
-import com.transporteruser.PrivacyPolicy;
-import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
 import com.transporteruser.databinding.CurrentAndConfirmedListBinding;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder> {
     ArrayList<Lead> list;
@@ -74,7 +64,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             String delivery =str[str.length-1];
             holder.binding.tvCLLocation.setText(pickup+" To "+delivery);
             holder.binding.tvCLMaterialType.setText(lead.getTypeOfMaterial());
-            if (lead.getBidCount() != null) {
+            if (!lead.getBidCount().equalsIgnoreCase("0")) {
                 holder.binding.llCounter.setVisibility(View.VISIBLE);
                 holder.binding.tvCounter.setText("" + lead.getBidCount());
             }
@@ -129,7 +119,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                             String title = menuItem.getTitle().toString();
                             int position = getAdapterPosition();
                             if(title.equals("Edit")){
-                                Toast.makeText(itemView.getContext(), "Edit", Toast.LENGTH_SHORT).show();
+                                if(position != RecyclerView.NO_POSITION && listner != null)
+                                    listner.onClick(list.get(position),position,"Edit");
                             }else if (title.equals("Delete")){
                                 if(position != RecyclerView.NO_POSITION && listner != null)
                                     listner.onClick(list.get(position),position,"Delete");

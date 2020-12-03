@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/color">
 
+    <androidx.appcompat.widget.Toolbar
+        style="@style/toolbar"
+        android:id="@+id/toolbar"
+        android:visibility="gone"
+        app:title="Update Profile"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="200dp"
         android:layout_height="200dp"

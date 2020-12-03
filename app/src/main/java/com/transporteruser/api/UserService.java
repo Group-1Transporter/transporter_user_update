@@ -77,6 +77,7 @@ public class UserService {
         @POST("/user/update")
         public Call<User> updateProfile(@Body User user);
 
+        @Multipart
         @POST("/user/image")
         public Call<User> updateImage(@Part MultipartBody.Part file, @Part ("userId") RequestBody userId);
 

@@ -1,4 +1,3 @@
-
 package com.transporteruser.bean;
 
 import com.google.gson.annotations.Expose;
@@ -53,6 +52,9 @@ public class Lead implements Serializable {
     @SerializedName("transporterName")
     @Expose
     private String transporterName;
+    @SerializedName("km")
+    @Expose
+    private String km="";
 
     public String getUserId() {
         return userId;
@@ -174,4 +176,11 @@ public class Lead implements Serializable {
         this.transporterName = transporterName;
     }
 
+    public String getKm() {
+        return km;
+    }
+
+    public void setKm(String km) {
+        this.km = km;
+    }
 }
