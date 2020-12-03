@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/color"
+    android:layout_height="wrap_content"
+    tools:context=".AddLoadActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue">
+
+
+    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:layout_below="@id/toolbar"
+        android:textColor="@color/black"
+        android:id="@+id/loadDetails"
+        android:text="Load Details"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/materialType"
+        style="@style/editText"
+        android:layout_below="@id/loadDetails"
+        android:hint="Material Type"/>
+    <EditText
+        android:id="@+id/weight"
+        style="@style/editText"
+        android:layout_below="@id/materialType"
+        android:hint="Weight(optional) :"/>
+    <EditText
+        android:id="@+id/km"
+        android:layout_below="@id/weight"
+        style="@style/editText"
+        android:hint="Distance(IN Kilometer):"/>
+
+    <EditText
+        android:id="@+id/lastDate"
+        style="@style/editText"
+        android:layout_below="@id/km"
+        android:focusable="false"
+        android:hint="Last Date :"/>
+    <TextView
+        android:id="@+id/pickupAddress"
+        style="@style/textView"
+        android:layout_below="@id/lastDate"
+        android:text="Pickup Address"/>
+    <EditText
+        android:id="@+id/street"
+        style="@style/editText"
+        android:layout_below="@id/pickupAddress"
+        android:hint="Street :"/>
+    <EditText
+        android:id="@+id/city"
+        style="@style/editText"
+        android:layout_below="@id/street"
+        android:hint="City :"/>
+    <Spinner
+        android:id="@+id/state"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_margin="10dp"
+        android:layout_below="@id/city"
+        android:hint="State :"/>
+
+
+    <EditText
+        android:id="@+id/pickupContact"
+        android:layout_below="@id/state"
+        style="@style/editText"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:hint="Pickup Contact :"
+        />
+    <TextView
+        android:id="@+id/deliveryAdreess"
+        style="@style/textView"
+        android:layout_below="@id/pickupContact"
+        android:text="Delivery Address"/>
+    <EditText
+        android:id="@+id/street2"
+        style="@style/editText"
+        android:layout_below="@id/deliveryAdreess"
+        android:hint="Street :"/>
+    <EditText
+        android:id="@+id/city2"
+        style="@style/editText"
+        android:layout_below="@id/street2"
+        android:hint="City :"/>
+    <Spinner
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        android:layout_margin="10dp"
+        android:id="@+id/state2"
+        android:layout_below="@id/city2"/>
+
+    <EditText
+        android:id="@+id/deliveryContact"
+        style="@style/editText"
+        android:layout_below="@id/state2"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:hint="Delivery Contact :"/>
+
+    <Button
+        android:id="@+id/btncreateLoad"
+        style="@style/button"
+        android:layout_below="@id/deliveryContact"
+        android:text="Add Load"/>
+
+
+</RelativeLayout>
+</ScrollView>

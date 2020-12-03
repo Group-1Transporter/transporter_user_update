@@ -11,7 +11,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -23,7 +22,6 @@ import com.transporteruser.adapters.BidShowAdapter;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Bid;
 import com.transporteruser.bean.Lead;
-import com.transporteruser.bean.Message;
 import com.transporteruser.bean.Transporter;
 import com.transporteruser.databinding.ActivityBidShowBinding;
 import com.transporteruser.databinding.ReceiveBiddingAlrtdilogBinding;

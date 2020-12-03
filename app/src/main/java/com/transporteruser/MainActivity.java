@@ -75,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
                     Fragment selected = null;
                     int id = item.getItemId();
                     if (id == R.id.User) {
-                        Toast.makeText(MainActivity.this, "User", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this,UpdateProfileActivity.class);
+                        startActivity(intent);
                     } else if (id == R.id.home) {
                         selected = new HomeFragement();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();

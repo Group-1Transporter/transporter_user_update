@@ -1,12 +1,10 @@
 package com.transporteruser.fragement;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -16,12 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.transporteruser.BidShowActivity;
-import com.transporteruser.CreateProfileActivity;
-import com.transporteruser.NetworkUtility;
 import com.transporteruser.R;
 import com.transporteruser.adapters.CompletedLoadShowAdapter;
-import com.transporteruser.adapters.CreatedLeadShowAdapter;
 import com.transporteruser.adapters.HomeAdapter;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
@@ -32,8 +26,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class HistoryFragement extends Fragment {
     UserService.UserApi userApi;

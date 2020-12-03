@@ -5,20 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.transporteruser.BidShowActivity;
-import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Bid;
 import com.transporteruser.bean.Lead;
 import com.transporteruser.databinding.BidShowBinding;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class BidShowAdapter extends RecyclerView.Adapter<BidShowAdapter.BidsViewHolder> {
     Lead lead;

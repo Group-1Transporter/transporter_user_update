@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.transporteruser.AddLoadActivity;
 import com.transporteruser.ChatActivity;
 import com.transporteruser.adapters.HomeAdapter;
 import com.transporteruser.api.UserService;
@@ -65,6 +66,13 @@ public class HomeFragement extends Fragment {
             }
         });
 
+        binding.floatingActionButtion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), AddLoadActivity.class);
+                getActivity().startActivity(i);
+            }
+        });
         return binding.getRoot();
 
     }
@@ -102,6 +110,10 @@ public class HomeFragement extends Fragment {
         }else if(status.equalsIgnoreCase("Chat With Client")){
             Intent i = new Intent(getContext(), ChatActivity.class);
             i.putExtra("transporterId",lead.getDealLockedWith());
+            startActivity(i);
+        }else if(status.equalsIgnoreCase("Edit")){
+            Intent i = new Intent(getContext(),AddLoadActivity.class);
+            i.putExtra("lead",lead);
             startActivity(i);
         }
     }

@@ -2,7 +2,6 @@ package com.transporteruser.adapters;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,8 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.transporteruser.BidShowActivity;
-import com.transporteruser.CreateProfileActivity;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
 import com.transporteruser.databinding.CreatedLoadBinding;
