@@ -94,7 +94,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                     user.setContactNumber(phoneNumber);
                     user.setUserId(userId);
                     user.setImageUrl(imageUrl);
-                    Call<User> call = userApi.updateUser(user);
+                    Call<User> call = userApi.updateProfile(user);
                     final ProgressDialog pd = new ProgressDialog(UpdateProfileActivity.this);
                     pd.setMessage("please wait while updating profile..");
                     pd.show();
@@ -147,7 +147,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 RequestBody requestFile = RequestBody.create(MediaType.parse(getContentResolver().getType(imageUri)),file);
                 MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
                 RequestBody userId = RequestBody.create(MultipartBody.FORM,currentUserId);
-                Call<User> call = userApi.updateimage(body, userId);
+                Call<User> call = userApi.updateImage(body, userId);
 
                 binding.civ.setImageURI(imageUri);
                 call.enqueue(new Callback<User>() {
