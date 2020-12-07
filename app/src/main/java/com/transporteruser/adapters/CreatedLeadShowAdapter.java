@@ -51,6 +51,7 @@ public class CreatedLeadShowAdapter extends RecyclerView.Adapter<CreatedLeadShow
         holder.binding.tvCLMaterialType.setText(lead.getTypeOfMaterial());
         holder.binding.tvCLPickUpContact.setText(lead.getContactForPickup());
         holder.binding.tvCLDeliveryContact.setText(lead.getContactForDelivery());
+
         holder.binding.tvQuntity.setText(lead.getWeight());
         if (lead.getBidCount() !=null){
             holder.binding.llCounter.setVisibility(View.VISIBLE);

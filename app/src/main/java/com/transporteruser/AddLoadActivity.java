@@ -123,6 +123,7 @@ public class AddLoadActivity extends AppCompatActivity {
             addLoadBinding.pickupContact.setText(lead.getContactForPickup());
             addLoadBinding.materialType.setText(lead.getTypeOfMaterial());
             addLoadBinding.weight.setText(lead.getWeight());
+            addLoadBinding.km.setText(lead.getKm());
             addLoadBinding.lastDate.setText(lead.getDateOfCompletion());
             String[] deliveryAddress = lead.getDeliveryAddress().split(",");
             addLoadBinding.street2.setText(deliveryAddress[0]);
@@ -173,7 +174,7 @@ public class AddLoadActivity extends AppCompatActivity {
                     String pickupContact = addLoadBinding.pickupContact.getText().toString();
                     String deliveryContact = addLoadBinding.deliveryContact.getText().toString();
                     String lastDate = addLoadBinding.lastDate.getText().toString();
-
+                    String km=addLoadBinding.km.getText().toString();
                     if (TextUtils.isEmpty(materialType)) {
                         addLoadBinding.materialType.setError("choose material type");
                         return;
@@ -208,6 +209,10 @@ public class AddLoadActivity extends AppCompatActivity {
                         addLoadBinding.deliveryContact.setError("choose delivery contact");
                         return;
                     }
+                    if (TextUtils.isEmpty(km)){
+                        addLoadBinding.km.setError("choose distance");
+                        return;
+                    }
 
                     leads = new Lead();
                     leads.setTypeOfMaterial(materialType);
@@ -222,6 +227,8 @@ public class AddLoadActivity extends AppCompatActivity {
                     leads.setDealLockedWith("");
                     leads.setTimestamp(String.valueOf(System.currentTimeMillis()));
                     leads.setVehicleNumber("");
+                    leads.setKm(km);
+                    leads.setAmount("");
 
 
                     LeadService.LeadApi leadApi = LeadService.getLeadApiInstance();
