@@ -15,15 +15,13 @@
             android:layout_marginBottom="5dp"
             android:elevation="10dp"
             android:padding="5dp"
-            android:background="@drawable/boder_comfirm_load">
+            android:background="@drawable/border_white">
 
             <TextView
                 android:id="@+id/ivCancel"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:text="X"
-                android:textSize="25sp"
-                android:textColor="#eb150A"
+                android:drawableEnd="@drawable/ic_baseline_cancel_24"
                 android:layout_marginLeft="5dp"
                 android:layout_alignParentEnd="true"
                 android:gravity="center"
@@ -54,6 +52,7 @@
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:text="Name : "
+                        android:textColor="@color/black"
                         android:textSize="16sp"/>
 
                     <TextView
@@ -61,6 +60,8 @@
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:text="Transporter Name"
+                        android:textColor="@color/black"
+
                         android:textSize="16sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -71,11 +72,15 @@
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:text="Material : "
+                        android:textColor="@color/black"
+
                         android:textSize="16sp"/>
 
                     <TextView
                         android:id="@+id/tvMaterial"
                         style="@style/comfirm_load_textView"
+                        android:textColor="@color/black"
+
                         android:layout_width="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:text="gold"
@@ -93,6 +98,8 @@
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:text="Rate : "
+                        android:textColor="@color/black"
+
                         android:textSize="16sp"/>
 
                     <TextView
@@ -100,6 +107,8 @@
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:text="10000"
+                        android:textColor="@color/black"
+
                         android:textSize="16sp"/>
                 </LinearLayout>
                 <LinearLayout
@@ -110,6 +119,8 @@
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:text="Date : "
+                        android:textColor="@color/black"
+
                         android:textSize="16sp"/>
 
                     <TextView
@@ -118,6 +129,8 @@
                         android:layout_width="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:text="10/23/2020"
+                        android:textColor="@color/black"
+
                         android:textSize="16sp"/>
                 </LinearLayout>
 
@@ -133,6 +146,8 @@
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:text=" Remark"
+                        android:textColor="@color/black"
+
                         android:textSize="16sp"
                         android:layout_marginLeft="-3dp"
                         android:textStyle="bold" />
@@ -142,6 +157,7 @@
                         style="@style/comfirm_load_textView"
                         android:layout_width="match_parent"
                         android:lines="5"
+                        android:elevation="4dp"
                         android:layout_marginLeft="-5dp"
                         android:layout_marginRight="5dp"
                         android:background="#edeaea"

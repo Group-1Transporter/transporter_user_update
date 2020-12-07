@@ -55,6 +55,9 @@ public class Lead implements Serializable {
     @SerializedName("km")
     @Expose
     private String km="";
+    @SerializedName("amount")
+    @Expose
+    private String amount="";
 
     public String getUserId() {
         return userId;
@@ -182,5 +185,13 @@ public class Lead implements Serializable {
 
     public void setKm(String km) {
         this.km = km;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 }

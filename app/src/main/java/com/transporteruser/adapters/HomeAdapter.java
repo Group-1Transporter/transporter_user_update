@@ -1,6 +1,7 @@
 package com.transporteruser.adapters;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,10 +59,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                 }
             });
             holder.binding.llConfirmLoad.setVisibility(View.GONE);
-            String str[]=lead.getPickUpAddress().split(" ");
-            String pickup=str[str.length-1];
-            str=lead.getDeliveryAddress().split(" ");
-            String delivery =str[str.length-1];
+            String[] deliveryAddress = lead.getDeliveryAddress().split(",");
+            String delivery=(deliveryAddress[1]);
+
+            String[] pickupAddress = lead.getPickUpAddress().split(",");
+            String pickup= (pickupAddress[1]);
             holder.binding.tvCLLocation.setText(pickup+" To "+delivery);
             holder.binding.tvCLMaterialType.setText(lead.getTypeOfMaterial());
             if (!lead.getBidCount().equalsIgnoreCase("0")) {
@@ -73,18 +75,22 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             }
 
 
-            holder.binding.tvCLPickUpContact.setText(lead.getContactForPickup());
-            holder.binding.tvCLDeliveryContact.setText(lead.getContactForDelivery());
+            holder.binding.tvLastDate.setText(lead.getDateOfCompletion());
+            holder.binding.tvDistance.setText(lead.getKm());
         }else{
             currentLoad = false;
             holder.binding.llCurrentLoad.setVisibility(View.GONE);
             holder.binding.llConfirmLoad.setVisibility(View.VISIBLE);
             holder.binding.tvTransporterName.setText(""+lead.getTransporterName());
-            String str[]=lead.getPickUpAddress().split(" ");
-            String pickup=str[str.length-1];
-            str=lead.getDeliveryAddress().split(" ");
-            String delivery =str[str.length-1];
-            holder.binding.tvLocation.setText(pickup+" To "+delivery );
+
+
+
+            String[] deliveryAddress = lead.getDeliveryAddress().split(",");
+            String de=(deliveryAddress[1]);
+
+            String[] pickupAddress = lead.getPickUpAddress().split(",");
+            String pickup= (pickupAddress[1]);
+            holder.binding.tvLocation.setText(pickup+" To "+de );
             holder.binding.tvMaterialType.setText(lead.getTypeOfMaterial());
             holder.binding.tvPickUpContact.setText(lead.getContactForPickup());
             holder.binding.tvDeliveryContact.setText(lead.getContactForDelivery());

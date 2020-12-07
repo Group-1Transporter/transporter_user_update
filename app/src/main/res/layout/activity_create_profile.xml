@@ -4,22 +4,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/color">
-
+    android:background="@drawable/border_white">
     <androidx.appcompat.widget.Toolbar
         style="@style/toolbar"
         android:id="@+id/toolbar"
         android:visibility="gone"
         app:title="Update Profile"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/blue"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/applogo"
         android:id="@+id/civ"
-        android:layout_marginTop="100dp"
+        app:civ_circle_background_color="@color/black"
+        app:civ_border_color="@color/skyblue"
+        app:civ_border_width="2dp"
+        android:layout_marginTop="130dp"
         android:layout_centerHorizontal="true" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="match_parent"
@@ -36,11 +43,13 @@
         android:layout_marginRight="40dp"
         android:id="@+id/userName"
         android:hint="Username"
+        android:elevation="7dp"
         android:drawableEnd="@drawable/ic_baseline_person_24"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:background="@drawable/border"
         android:layout_below="@id/civ"
         android:padding="10dp"
+        android:textColorHint="@color/white"
         android:textCursorDrawable="@null"
         android:layout_marginTop="35dp"/>
     <EditText
@@ -50,10 +59,12 @@
         android:layout_marginRight="40dp"
         android:inputType="number"
         android:maxLength="10"
+        android:textColorHint="@color/white"
+        android:elevation="7dp"
         android:id="@+id/phoneNumber"
         android:hint="Phone Number"
-        android:drawableEnd="@drawable/phone"
-        android:textColor="@color/black"
+        android:drawableEnd="@drawable/phone2"
+        android:textColor="@color/white"
         android:background="@drawable/border"
         android:layout_below="@id/userName"
         android:padding="10dp"
@@ -61,20 +72,21 @@
         android:layout_marginTop="20dp"/>
     <EditText
         android:layout_width="match_parent"
+        android:textColorHint="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:drawableEnd="@drawable/ic_baseline_home_24"
+        android:drawableEnd="@drawable/ic_baseline_home_"
         android:layout_marginRight="40dp"
         android:id="@+id/address"
+        android:elevation="7dp"
         android:lines="3"
         android:hint="Address"
         android:textCursorDrawable="@null"
         android:background="@drawable/border"
         android:layout_below="@id/phoneNumber"
         android:padding="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:layout_marginTop="20dp"/>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,7 +100,4 @@
         android:id="@+id/createProfile"
         android:textColor="@color/white"
         android:background="@drawable/button_decorator"/>
-
-
-
 </RelativeLayout>
