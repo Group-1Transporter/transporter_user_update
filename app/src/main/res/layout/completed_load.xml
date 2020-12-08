@@ -47,6 +47,7 @@
                     style="@style/comfirm_load_textView"
                     android:layout_width="wrap_content"
                     android:text="3/12/2020"
+                    android:textColor="@color/black"
                     android:layout_marginBottom="10dp"
                     android:layout_marginRight="5dp"
                     android:layout_alignParentEnd="true" />
@@ -54,7 +55,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/check_circle"
-                    android:id="@+id/kis"
+                    android:id="@+id/right"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center_horizontal"/>
@@ -69,23 +70,23 @@
 
                 <ImageView
 
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/location"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/location_red"
                     android:layout_marginBottom="-3dp"/>
 
                 <TextView
                     android:singleLine="true"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:id="@+id/tvAddress"
-                    style="@style/comfirm_load_textView"
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-3dp"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:text="Source to Destination "
-
-                    android:layout_marginBottom="-3dp"/>
-
+                    android:layout_marginRight="20dp"
+                    android:text="Source to Destination "/>
             </LinearLayout>
 
             <LinearLayout
@@ -94,26 +95,33 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/llLocation"
                 android:orientation="vertical"
-                android:layout_marginLeft="22dp">
+                >
 
                 <LinearLayout
                     android:id="@+id/llMaterialType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/llLocation"
+                    android:layout_marginTop="3dp"
                     >
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/boxes"/>
 
                     <TextView
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="Material : " />
+                        android:text="Material : "
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/tvTypeOfmaterial"
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:text="Steel"
+                        android:textColor="@color/black"
                         />
                 </LinearLayout>
 
@@ -123,12 +131,19 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/llMaterialType"
                     >
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/user"
+                        />
 
                     <TextView
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="Name : "
+                        android:textColor="@color/black"
+                        android:layout_marginTop="3dp"
 
                         />
 
@@ -136,7 +151,9 @@
                         android:id="@+id/tvTransporterName"
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
-                        android:text="khan shab" />
+                        android:text="khan shab"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="3dp"/>
 
                 </LinearLayout>
 
@@ -145,20 +162,28 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/llName"
                     >
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/money"
+                        />
 
                     <TextView
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="Rate : "
-
+                        android:layout_marginTop="3dp"
+                        android:textColor="@color/black"
                         />
 
                     <TextView
                         android:id="@+id/tvrate"
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
-                        android:text="12000" />
+                        android:text="12000"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="3dp"/>
 
 
                 </LinearLayout>
@@ -168,17 +193,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="4dp">
-                <TextView
+                    android:layout_marginTop="3dp"
+                    >
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/weight"
+                        />
+                    <TextView
 
-                    style="@style/comfirm_load_textView"
-                    android:layout_width="wrap_content"
-                    android:text="Quntity : " />
-                <TextView
-                    android:id="@+id/tvQuntity"
-                    style="@style/comfirm_load_textView"
-                    android:layout_width="wrap_content"
-                    android:text="10Ton" />
+                        style="@style/comfirm_load_textView"
+                        android:layout_width="wrap_content"
+                        android:text="Quantity : "
+                        android:textColor="@color/black"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="5dp"/>
+                    <TextView
+                        android:id="@+id/tvQuntity"
+                        style="@style/comfirm_load_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:textColor="@color/black"
+                        android:text="10Ton" />
 
                 </LinearLayout>
 

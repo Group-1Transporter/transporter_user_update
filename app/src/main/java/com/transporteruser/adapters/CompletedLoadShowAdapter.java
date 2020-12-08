@@ -87,10 +87,10 @@ public class CompletedLoadShowAdapter extends RecyclerView.Adapter<CompletedLoad
             }
         });
 
-            String str[]=lead.getPickUpAddress().split(" ");
-        String pickup=str[str.length-1];
-        str=lead.getDeliveryAddress().split(" ");
-        String delivery =str[str.length-1];
+        String[] pickupAddress = lead.getPickUpAddress().split(",");
+        String pickup= (pickupAddress[1]);
+        String[] deliveryAddress = lead.getDeliveryAddress().split(",");
+        String delivery= (deliveryAddress[1]);
         holder.binding.tvAddress.setText(pickup+" To "+delivery);
     }
 

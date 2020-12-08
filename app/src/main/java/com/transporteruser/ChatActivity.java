@@ -76,7 +76,6 @@ public class ChatActivity extends AppCompatActivity {
                     if(response.code() == 200){
                         transporter = response.body();
                         getSupportActionBar().setTitle(transporter.getName());
-                        Picasso.get().load(transporter.getImageUrl()).into(binding.civUser);
                     }
                 }
 
