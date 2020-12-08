@@ -58,10 +58,10 @@ public class BidShowActivity extends AppCompatActivity {
 
         getBidsByLead(lead.getLeadId());
 
-        String str[]=lead.getPickUpAddress().split(" ");
-        String pickup=str[str.length-1];
-        str=lead.getDeliveryAddress().split(" ");
-        String delivery =str[str.length-1];
+        String[] pickupAddress = lead.getPickUpAddress().split(",");
+        String pickup= (pickupAddress[2]);
+        String[] deliveyAdress = lead.getDeliveryAddress().split(",");
+        String delivery= (deliveyAdress[2]);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(pickup+" To "+delivery);

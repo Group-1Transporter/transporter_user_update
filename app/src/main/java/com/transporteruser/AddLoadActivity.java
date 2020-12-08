@@ -229,6 +229,7 @@ public class AddLoadActivity extends AppCompatActivity {
                     leads.setVehicleNumber("");
                     leads.setKm(km);
                     leads.setAmount("");
+                    leads.setTransporterName("");
 
 
                     LeadService.LeadApi leadApi = LeadService.getLeadApiInstance();
