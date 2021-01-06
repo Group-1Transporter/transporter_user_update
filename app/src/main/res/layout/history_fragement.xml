@@ -31,6 +31,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:button="@null"
+
                 android:drawableRight="@android:drawable/btn_radio"
                 android:drawablePadding="30dp"
                 android:gravity="start|center_vertical"

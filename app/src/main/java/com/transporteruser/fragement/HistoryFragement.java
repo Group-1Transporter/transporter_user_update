@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.transporteruser.R;
 import com.transporteruser.adapters.CompletedLoadShowAdapter;
+import com.transporteruser.adapters.CreatedLeadShowAdapter;
 import com.transporteruser.adapters.HomeAdapter;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
@@ -29,13 +30,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HistoryFragement extends Fragment {
+public class
+HistoryFragement extends Fragment {
     UserService.UserApi userApi;
     HistoryFragementBinding binding;
     CompletedLoadShowAdapter adapter;
     String currentUserId ;
     SharedPreferences sp = null;
     ProgressDialog pd;
+    CreatedLeadShowAdapter createdLeadShowAdapter;
     HomeAdapter createAdapter;
     @Nullable
     @Override
@@ -49,7 +52,9 @@ public class HistoryFragement extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.rbCompleted){
+
                     getCompletedLeads();
+
                 }else if(i == R.id.rbCreated){
                     getCreateLeads();
                 }
@@ -71,9 +76,11 @@ public class HistoryFragement extends Fragment {
                 if(response.code() == 200){
                     ArrayList<Lead> leadList = response.body();
                     if (!leadList.isEmpty()){
-                        createAdapter = new HomeAdapter(leadList);
-                        binding.rv.setAdapter(createAdapter);
+                        createdLeadShowAdapter = new CreatedLeadShowAdapter(leadList);
+                        binding.rv.setAdapter(createdLeadShowAdapter);
                         binding.rv.setLayoutManager(new LinearLayoutManager(getContext()));
+                    }
+                    else {
                     }
                 }
             }
@@ -96,11 +103,13 @@ public class HistoryFragement extends Fragment {
                 pd.dismiss();
                 if(response.code() == 200){
                     ArrayList<Lead> leadList = response.body();
-                    if (!leadList.isEmpty()){
+                    if(!leadList.isEmpty()){
                         adapter = new CompletedLoadShowAdapter(leadList);
                         binding.rv.setAdapter(adapter);
                         binding.rv.setLayoutManager(new LinearLayoutManager(getContext()));
                     }
+
+
                 }
             }
 

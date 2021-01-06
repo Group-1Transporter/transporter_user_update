@@ -9,6 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -33,6 +34,8 @@ public class LeadService implements Serializable {
         public Call<Lead> updateLeads(@Body Lead leads);
         @DELETE("/lead/{leadId}")
         public  Call<Lead> deleteLeadById(@Path("leadId") String id);
+        @GET("/lead/created-lead/{userId}")
+        public  Call<Lead> getCreatedLeads(@Path("userId")String id);
 
     }
 

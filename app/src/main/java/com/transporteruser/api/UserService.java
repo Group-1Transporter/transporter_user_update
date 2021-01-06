@@ -67,6 +67,8 @@ public class UserService {
 
         @GET("/lead/created-lead/{userId}")
         public  Call<ArrayList<Lead>> getAllCreatedLeadsByUserId(@Path("userId")String userId);
+        @GET("/lead/confirm-lead/{userId}")
+        public Call<ArrayList<Lead>>getConfirmLeads(@Path("userId")String userId);
 
         @GET("/bid/{leadId}")
         public  Call<ArrayList<Bid>> getAllBidsByLeadId(@Path("leadId")String leadId);

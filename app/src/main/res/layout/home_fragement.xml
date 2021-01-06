@@ -10,6 +10,29 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_cl" />
 
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="130dp"
+        android:visibility="gone"
+        android:background="@drawable/nodata"
+        android:id="@+id/nodata"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Load Created Yet "
+        android:padding="15dp"
+        android:layout_centerInParent="true"
+        android:textColor="#918A8A"
+        android:layout_below="@+id/nodata"
+        android:id="@+id/tv"
+        android:visibility="gone"
+        android:textSize="20sp"
+        android:layout_marginLeft="100dp"
+        android:gravity="center"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtion"
         android:layout_width="wrap_content"

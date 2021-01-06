@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
 import com.transporteruser.databinding.CreatedLoadBinding;
+import com.transporteruser.databinding.CurrentAndConfirmedListBinding;
 
 import java.util.ArrayList;
 
@@ -30,12 +31,10 @@ public class CreatedLeadShowAdapter extends RecyclerView.Adapter<CreatedLeadShow
         this.leadList = leadList;
     }
 
-
-
     @NonNull
     @Override
     public CreatedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CreatedLoadBinding binding = CreatedLoadBinding.inflate(LayoutInflater.from(parent.getContext()));
+        CurrentAndConfirmedListBinding binding = CurrentAndConfirmedListBinding.inflate(LayoutInflater.from(parent.getContext()));
         return new CreatedViewHolder(binding);
 
     }
@@ -43,21 +42,22 @@ public class CreatedLeadShowAdapter extends RecyclerView.Adapter<CreatedLeadShow
     @Override
     public void onBindViewHolder(@NonNull final CreatedViewHolder holder, final int position) {
         final Lead lead = leadList.get(position);
-        String str[]=lead.getPickUpAddress().split(" ");
-        String pickup=str[str.length-1];
-        str=lead.getDeliveryAddress().split(" ");
-        String delivery =str[str.length-1];
+        holder.binding.llConfirmLoad.setVisibility(View.GONE);
+        String[] deliveryAddress = lead.getDeliveryAddress().split(",");
+        String delivery=(deliveryAddress[1]);
+
+        String[] pickupAddress = lead.getPickUpAddress().split(",");
+        String pickup= (pickupAddress[1]);
         holder.binding.tvCLLocation.setText(pickup+" To "+delivery);
         holder.binding.tvCLMaterialType.setText(lead.getTypeOfMaterial());
-        holder.binding.tvCLPickUpContact.setText(lead.getContactForPickup());
-        holder.binding.tvCLDeliveryContact.setText(lead.getContactForDelivery());
+        holder.binding.tvLastDate.setText(lead.getDateOfCompletion());
+        holder.binding.tvDistance.setText(lead.getKm());
 
-        holder.binding.tvQuntity.setText(lead.getWeight());
-        if (lead.getBidCount() !=null){
+        if (!lead.getBidCount().equalsIgnoreCase("0")) {
             holder.binding.llCounter.setVisibility(View.VISIBLE);
             holder.binding.tvCounter.setText("" + lead.getBidCount());
         }
-        else {
+        else{
             holder.binding.llCounter.setVisibility(View.GONE);
         }
         holder.binding.morevertical.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +117,8 @@ public class CreatedLeadShowAdapter extends RecyclerView.Adapter<CreatedLeadShow
     }
 
     public class CreatedViewHolder extends RecyclerView.ViewHolder {
-       CreatedLoadBinding binding;
-       public CreatedViewHolder(CreatedLoadBinding binding) {
+       CurrentAndConfirmedListBinding binding;
+       public CreatedViewHolder(CurrentAndConfirmedListBinding binding) {
            super(binding.getRoot());
            this.binding = binding;
            itemView.setOnClickListener(new View.OnClickListener() {
@@ -133,8 +133,6 @@ public class CreatedLeadShowAdapter extends RecyclerView.Adapter<CreatedLeadShow
            });
        }
    }
-
-
 
    public interface OnRecyclerViewClickListner{
         public void onItemClick(Lead lead,int position);

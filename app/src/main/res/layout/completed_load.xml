@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp">
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +30,7 @@
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:src="@drawable/more_vert"
                     android:id="@+id/morevertical"
                     android:layout_alignParentEnd="true"
@@ -78,10 +80,11 @@
                 <TextView
                     android:singleLine="true"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:id="@+id/tvAddress"
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
+                    android:textAllCaps="true"
                     android:layout_marginLeft="5dp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -219,7 +222,9 @@
                 </LinearLayout>
 
             </LinearLayout>
-            '
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
+
 </LinearLayout>

@@ -5,7 +5,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,11 +26,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.transporteruser.adapters.HomeAdapter;
 import com.transporteruser.api.UserService;
+import com.transporteruser.bean.Lead;
 import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ActivityMainBinding;
 import com.transporteruser.fragement.HistoryFragement;
 import com.transporteruser.fragement.HomeFragement;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     SharedPreferences sp = null;
     String currentUserId;
+    UserService.UserApi userApi;
     FirebaseUser currentUser;
 
     @Override
@@ -47,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         boolean isInternetConnected = NetworkUtility.checkInternetConnection(MainActivity.this);
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
+        binding.toolbar.setTitle("Home");
         currentUserId = FirebaseAuth.getInstance().getUid();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         setContentView(binding.getRoot());
@@ -83,7 +91,18 @@ public class MainActivity extends AppCompatActivity {
                     } else if (id == R.id.history) {
                         selected = new HistoryFragement();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();
-                    } else if (id == R.id.TermAndCondition) {
+                    }
+                     else if (id==R.id.currentLoad){
+                         Intent i=new Intent(MainActivity.this,CurrentLoad.class);
+                         startActivity(i);
+
+                    }
+                     else if (id==R.id.confirmedLoad){
+                         Intent i=new Intent(MainActivity.this,ConfirmedLoad.class);
+                         startActivity(i);
+
+                    }
+                    else if (id == R.id.TermAndCondition) {
                         Intent i = new Intent(Intent.ACTION_SEND);
                         i.setType("text/plain");
                         i.putExtra(Intent.EXTRA_SUBJECT, "Sharing URL");
@@ -133,9 +152,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.home:
                         selected = new HomeFragement();
+                        binding.toolbar.setTitle("Home");
                         break;
                     case R.id.history:
                         selected = new HistoryFragement();
+                        binding.toolbar.setTitle("History");
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();
@@ -184,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     private void saveDataLocally(User user){
         SharedPreferences.Editor editor =sp.edit();
         editor.putString("name",user.getName());
@@ -198,4 +220,5 @@ public class MainActivity extends AppCompatActivity {
         Intent in = new Intent(MainActivity.this, CreateProfileActivity.class);
         startActivity(in);
     }
+
 }
