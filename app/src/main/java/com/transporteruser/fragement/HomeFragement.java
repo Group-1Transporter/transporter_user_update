@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 public class HomeFragement extends Fragment {
     HomeAdapter adapter;
     String currentUserId;
@@ -46,11 +45,15 @@ public class HomeFragement extends Fragment {
         pd.show();
         UserService.UserApi userApi = UserService.getUserApiInstance();
         binding = HomeFragementBinding.inflate(getLayoutInflater());
-        userApi.getCreateAndConfirmed(currentUserId).enqueue(new Callback<ArrayList<Lead>>() {
+        userApi.getCreateAndConfirmed(currentUserId).enqueue(new Callback <ArrayList<Lead>>() {
             @Override
             public void onResponse(Call<ArrayList<Lead>> call, Response<ArrayList<Lead>> response) {
                 pd.dismiss();
                 if(response.code() == 200 ){
+                    if (response.body().isEmpty()){
+                        binding.tv.setVisibility(View.VISIBLE);
+                        binding.nodata.setVisibility(View.VISIBLE);
+                    }
                     list = response.body();
                     adapter = new HomeAdapter(list);
                     binding.rv.setAdapter(adapter);

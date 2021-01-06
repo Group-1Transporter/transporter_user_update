@@ -27,6 +27,10 @@
         <activity
             android:name=".ContactUsActivity"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".CurrentLoad"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ConfirmedLoad"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +38,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".CreateProfileActivity" android:parentActivityName=".SplashScreen" />
         <activity android:name=".ChatActivity"/>

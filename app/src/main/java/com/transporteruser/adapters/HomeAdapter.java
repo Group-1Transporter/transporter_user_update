@@ -2,6 +2,7 @@ package com.transporteruser.adapters;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.transporteruser.BidShowActivity;
+import com.transporteruser.bean.Bid;
 import com.transporteruser.bean.Lead;
 import com.transporteruser.databinding.CurrentAndConfirmedListBinding;
 
@@ -77,14 +79,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
 
             holder.binding.tvLastDate.setText(lead.getDateOfCompletion());
             holder.binding.tvDistance.setText(lead.getKm());
-        }else{
+        } else{
             currentLoad = false;
             holder.binding.llCurrentLoad.setVisibility(View.GONE);
             holder.binding.llConfirmLoad.setVisibility(View.VISIBLE);
             holder.binding.tvTransporterName.setText(""+lead.getTransporterName());
-
-
-
             String[] deliveryAddress = lead.getDeliveryAddress().split(",");
             String de=(deliveryAddress[1]);
 
@@ -92,8 +91,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             String pickup= (pickupAddress[1]);
             holder.binding.tvLocation.setText(pickup+" To "+de );
             holder.binding.tvMaterialType.setText(lead.getTypeOfMaterial());
-            holder.binding.tvPickUpContact.setText(lead.getContactForPickup());
-            holder.binding.tvDeliveryContact.setText(lead.getContactForDelivery());
             holder.binding.tvProgressStatus.setText(lead.getStatus());
 
         }
@@ -117,14 +114,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                 public void onClick(View view) {
                     final PopupMenu popupMenu = new PopupMenu(itemView.getContext(),binding.morevertical);
                     final Menu menu= popupMenu.getMenu();
-                    menu.add("Edit");
+                    menu.add("Edit/View");
                     menu.add("Delete");
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
                             String title = menuItem.getTitle().toString();
                             int position = getAdapterPosition();
-                            if(title.equals("Edit")){
+                            if(title.equals("Edit/View")){
                                 if(position != RecyclerView.NO_POSITION && listner != null)
                                     listner.onClick(list.get(position),position,"Edit");
                             }else if (title.equals("Delete")){
@@ -142,15 +139,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             binding.more.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    PopupMenu popupMenu = new PopupMenu(itemView.getContext(),binding.morevertical);
+                    final PopupMenu popupMenu = new PopupMenu(itemView.getContext(),binding.more);
                     final Menu menu= popupMenu.getMenu();
                     menu.add("Chat with Client");
                     menu.add("Cancel");
+
+                    popupMenu.setGravity(Gravity.RIGHT);
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
                             String title = menuItem.getTitle().toString();
                             int position = getAdapterPosition();
+                            popupMenu.setGravity(Gravity.RIGHT);
                             if(title.equals("Chat with Client")){
                                 if(position != RecyclerView.NO_POSITION && listner != null)
                                     listner.onClick(list.get(position),position,"Chat with client");

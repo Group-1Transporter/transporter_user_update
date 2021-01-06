@@ -14,15 +14,21 @@
                     android:id="@+id/history"
                     android:icon="@drawable/history"
                     />
+                <item android:title="Current Load"
+                      android:id="@+id/currentLoad"
+                      android:icon="@drawable/loadmaterial"/>
+                <item android:title="Confirmed Load"
+                      android:id="@+id/confirmedLoad"
+                      android:icon="@drawable/check"/>
         </menu>
     </item>
     <item android:title="App Information">
         <menu>
-            <item android:title="Term and Comdition"
+            <item android:title="Term and Condition"
                 android:icon="@drawable/term"
                 android:id="@+id/TermAndCondition"
                 />
-            <item android:title="Privicy and Pollacy"
+            <item android:title="Privacy and Policy"
                 android:icon="@drawable/privecy"
                 android:id="@+id/PrivacyPoalcy"
                 />

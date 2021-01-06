@@ -38,7 +38,9 @@ public class CompletedLoadShowAdapter extends RecyclerView.Adapter<CompletedLoad
 
     @Override
     public void onBindViewHolder(@NonNull final CompletedViewHolder holder, int position) {
+
         final Lead lead = leadList.get(position);
+
         holder.binding.tvDate.setText(lead.getDateOfCompletion());
         holder.binding.tvTypeOfmaterial.setText(lead.getTypeOfMaterial());
         holder.binding.tvQuntity.setText(lead.getWeight());

@@ -122,8 +122,10 @@ public class AddLoadActivity extends AppCompatActivity {
             }
             addLoadBinding.pickupContact.setText(lead.getContactForPickup());
             addLoadBinding.materialType.setText(lead.getTypeOfMaterial());
-            addLoadBinding.weight.setText(lead.getWeight());
-            addLoadBinding.km.setText(lead.getKm());
+            if (!lead.getWeight().equals("")){
+            addLoadBinding.weight.setText("Weight : "+lead.getWeight()+" Ton");}
+
+            addLoadBinding.km.setText(lead.getKm()+" km");
             addLoadBinding.lastDate.setText(lead.getDateOfCompletion());
             String[] deliveryAddress = lead.getDeliveryAddress().split(",");
             addLoadBinding.street2.setText(deliveryAddress[0]);
