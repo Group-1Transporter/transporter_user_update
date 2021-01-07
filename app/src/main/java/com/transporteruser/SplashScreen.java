@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.transporteruser.databinding.ActivitySplashScreenBinding;
+import com.transporteruser.databinding.NointernentBinding;
 
 
 public class SplashScreen extends AppCompatActivity {
@@ -20,8 +21,13 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding  = ActivitySplashScreenBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
-        if(!NetworkUtility.checkInternetConnection(this))
+        if(!NetworkUtility.checkInternetConnection(this)) {
             Toast.makeText(this, "Please enable internet connection", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(SplashScreen.this,NoInternetActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -42,6 +48,7 @@ public class SplashScreen extends AppCompatActivity {
                     }
                 }else
                     run();
+
 
             }
         },5000);

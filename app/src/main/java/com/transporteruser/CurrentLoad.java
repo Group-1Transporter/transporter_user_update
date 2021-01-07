@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.transporteruser.adapters.HomeAdapter;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
-import com.transporteruser.databinding.CurrentLoadBinding;
 import com.transporteruser.databinding.CurrentLoadShowBinding;
 
 import java.util.ArrayList;

@@ -135,6 +135,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(UpdateProfileActivity.this, "Check Internent connection", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(UpdateProfileActivity.this,NoInternetActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
                 }
 
             }

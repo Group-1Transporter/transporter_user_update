@@ -31,6 +31,7 @@ import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
 import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ActivityMainBinding;
+import com.transporteruser.databinding.NointernentBinding;
 import com.transporteruser.fragement.HistoryFragement;
 import com.transporteruser.fragement.HomeFragement;
 
@@ -140,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
             });
         } else {
             Toast.makeText(MainActivity.this, "Please enable internet connection", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(MainActivity.this,NoInternetActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
 
     }
