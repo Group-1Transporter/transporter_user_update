@@ -2,6 +2,7 @@ package com.transporteruser;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +10,13 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.transporteruser.databinding.NointernentBinding;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
+    NointernentBinding binding;
     private  static  final int RC_SIGN_IN = 123;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +40,10 @@ public class LoginActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "Please enable internet connection", Toast.LENGTH_SHORT).show();
+            binding = NointernentBinding.inflate(LayoutInflater.from(this));
+            setContentView(binding.getRoot());
+
+
         }
     }
     @Override

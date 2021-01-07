@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="200dp"
+        android:id="@+id/im"
+        android:layout_height="200dp"
+        android:src="@drawable/sad"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"/>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/im"
+        android:id="@+id/tvtext"
+        android:text="Oops!"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:layout_width="230dp"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_below="@+id/tvtext"
+        android:layout_centerInParent="true"
+        android:text="Slow or no Internent Connection please check your internet setting or restart the app"/>
+
+</RelativeLayout>

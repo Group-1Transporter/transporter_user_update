@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
-import com.transporteruser.databinding.CreatedLoadBinding;
 import com.transporteruser.databinding.CurrentAndConfirmedListBinding;
 
 import java.util.ArrayList;
