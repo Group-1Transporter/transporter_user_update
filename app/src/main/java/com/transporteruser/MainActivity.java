@@ -7,9 +7,11 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import java.util.Calendar;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
@@ -17,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -29,9 +32,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.transporteruser.adapters.HomeAdapter;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
+import com.transporteruser.bean.Rating;
+import com.transporteruser.bean.Transporter;
 import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ActivityMainBinding;
 import com.transporteruser.databinding.NointernentBinding;
+import com.transporteruser.databinding.RatingDialogBinding;
 import com.transporteruser.fragement.HistoryFragement;
 import com.transporteruser.fragement.HomeFragement;
 
@@ -49,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     String currentUserId;
     UserService.UserApi userApi;
     FirebaseUser currentUser;
+    float ra =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +155,108 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    public void getRatingDialog(final String transporterId, final String leadId){
+        final AlertDialog ab = new AlertDialog.Builder(this).create();
+        final RatingDialogBinding ratingDialogBinding =  RatingDialogBinding.inflate(LayoutInflater.from(this));
+        setContentView(binding.getRoot());
+        ab.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        ratingDialogBinding.cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ab.dismiss();
+            }
+        });
+        ratingDialogBinding.ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                ra = rating;
+            }
+        });
+        ratingDialogBinding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
 
+            public void onClick(View v) {
+
+                userApi.checkProfile(currentUserId).enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if (response.code() == 200){
+                            final Rating  r = new Rating();
+                            String feedback = ratingDialogBinding.etOverview.getText().toString();
+                            r.setRating(""+ra);
+                            long timestamp = Calendar.getInstance().getTimeInMillis();
+                            r.setReview(feedback);
+                            r.setTimestamp(timestamp);
+                            r.setUserName(response.body().getName());
+                            r.setImageUrl(response.body().getImageUrl());
+                            userApi.getNumberOfRating(transporterId).enqueue(new Callback<ArrayList<Float>>() {
+                                @Override
+                                public void onResponse(Call<ArrayList<Float>> call, Response<ArrayList<Float>> response) {
+                                    if (response.code() ==200){
+                                        ArrayList<Float>al = response.body();
+                                        final float numberOfPersons = al.get(0) + 1;
+                                        final float totalNumberOfRating = al.get(1)+ra;
+                                        userApi.getTransporter(transporterId).enqueue(new Callback<Transporter>() {
+                                            @Override
+                                            public void onResponse(Call<Transporter> call, Response<Transporter> response) {
+                                                if(response.code() == 200){
+                                                    Transporter transporter = response.body();
+                                                    transporter.setRating(""+totalNumberOfRating/numberOfPersons);
+                                                    userApi.updateTransporter(transporter).enqueue(new Callback<Transporter>() {
+                                                        @Override
+                                                        public void onResponse(Call<Transporter> call, Response<Transporter> response) {
+                                                            if(response.code() == 200){
+                                                                userApi.createRating(transporterId,leadId,r).enqueue(new Callback<Rating>() {
+                                                                    @Override
+                                                                    public void onResponse(Call<Rating> call, Response<Rating> response) {
+                                                                        if(response.code() == 200){
+                                                                            Toast.makeText(MainActivity.this, ""+ra+" stars give ", Toast.LENGTH_SHORT).show();
+                                                                            ab.dismiss();
+                                                                        }
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onFailure(Call<Rating> call, Throwable t) {
+                                                                        Toast.makeText(MainActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onFailure(Call<Transporter> call, Throwable t) {
+                                                            Toast.makeText(MainActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<Transporter> call, Throwable t) {
+                                                Toast.makeText(MainActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ArrayList<Float>> call, Throwable t) {
+                                    Toast.makeText(MainActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+        ab.show();
+    }
     private void getFragment() {
         binding.bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -92,6 +92,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             holder.binding.tvLocation.setText(pickup+" To "+de );
             holder.binding.tvMaterialType.setText(lead.getTypeOfMaterial());
             holder.binding.tvProgressStatus.setText(lead.getStatus());
+            holder.binding.tvAmount.setText(lead.getAmount());
 
         }
 
