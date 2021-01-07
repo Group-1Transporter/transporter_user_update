@@ -3,6 +3,7 @@ package com.transporteruser.api;
 
 import com.transporteruser.bean.Bid;
 import com.transporteruser.bean.Lead;
+import com.transporteruser.bean.Rating;
 import com.transporteruser.bean.Transporter;
 import com.transporteruser.bean.User;
 
@@ -91,6 +92,21 @@ public class UserService {
 
         @POST("/lead/update")
         public  Call<Lead> updateLead(@Body Lead lead);
+
+        @POST("/rating/{transporterId}/{leadId}")
+        public  Call<Rating> createRating (@Path("transporterId")String transporterId,@Path("leadId") String leadId,@Body Rating rating);
+
+        @GET("/rating/{transporterId}")
+        public Call<ArrayList<Rating>> getTransporterRating (@Path("transporterId")String transporterId);
+
+        @GET("/rating/number/{transporterId}")
+        public Call<ArrayList<Float>> getNumberOfRating(@Path("transporterId")String transporterId);
+
+        @POST("transporter/Update")
+        public  Call<Transporter> updateTransporter (@Body Transporter transporter);
+
+        @GET("transporter/{transporterId}")
+        public  Call<Transporter> getTransporter (@Path("transporterId") String transporterId);
 
     }
 }

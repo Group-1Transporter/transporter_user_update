@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="20dp"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/boder_comfirm_load">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/thanksup"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_below="@id/cancel"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="-25dp"
+            android:src="@drawable/applogo"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="10dp"
+            android:text=" X"
+            android:textColor="#F60404"
+            android:textSize="30sp"
+            android:layout_marginTop="5dp"/>
+
+        <EditText
+            android:id="@+id/etOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/thanksup"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="18sp"
+            android:hint="Type your feedback here..."
+            android:layout_margin="10dp"/>
+
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/rv"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/etOverview"-->
+        <!--            android:layout_centerInParent="true">-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/star3"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:layout_centerInParent="true"-->
+        <!--                android:src="@drawable/star"-->
+        <!--                android:visibility="visible" />-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/str3"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/str"-->
+        <!--                android:visibility="gone" />-->
+        <!--        </RelativeLayout>-->
+
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/rv2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/etOverview"-->
+        <!--            android:layout_toLeftOf="@id/rv">-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/star2"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:layout_centerInParent="true"-->
+        <!--                android:src="@drawable/star"-->
+        <!--                android:visibility="visible" />-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/str2"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/str"-->
+        <!--                android:visibility="gone" />-->
+        <!--        </RelativeLayout>-->
+
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/rv3"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/etOverview"-->
+        <!--            android:layout_toLeftOf="@id/rv2"-->
+
+        <!--            >-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/star"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:layout_centerInParent="true"-->
+        <!--                android:src="@drawable/star"-->
+        <!--                android:visibility="visible" />-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/str"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/str"-->
+        <!--                android:visibility="gone" />-->
+        <!--        </RelativeLayout>-->
+
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/rv4"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/etOverview"-->
+        <!--            android:layout_toRightOf="@id/rv">-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/star4"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:layout_centerInParent="true"-->
+        <!--                android:src="@drawable/star"-->
+        <!--                android:visibility="visible" />-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/str4"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/str"-->
+        <!--                android:visibility="gone" />-->
+        <!--        </RelativeLayout>-->
+
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/rv5"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@id/etOverview"-->
+        <!--            android:layout_toRightOf="@id/rv4">-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/star5"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:layout_centerInParent="true"-->
+        <!--                android:src="@drawable/star"-->
+        <!--                android:visibility="visible" />-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/str5"-->
+        <!--                android:layout_width="40dp"-->
+        <!--                android:layout_height="40dp"-->
+        <!--                android:src="@drawable/str"-->
+        <!--                android:visibility="gone" />-->
+        <!--        </RelativeLayout>-->
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etOverview"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:stepSize="0.5"
+            android:rating="2.5"
+            android:layout_marginTop="10dp"
+            android:progressTint="#FFEB3B"
+            android:numStars="5" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:text="SAVE"
+            android:textSize="23sp"
+            android:id="@+id/btnSave"
+            android:background="@drawable/button_blue"
+            android:layout_below="@id/ratingbar"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_margin="20dp"/>
+    </RelativeLayout>
+
+</LinearLayout>
