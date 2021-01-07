@@ -15,12 +15,14 @@
         android:id="@+id/nodata"
         android:layout_height="150dp"
         android:src="@drawable/nodata"
+        android:visibility="gone"
         android:scaleType="fitCenter"
         android:layout_centerInParent="true"/>
     <TextView
         android:layout_width="260dp"
         android:layout_marginTop="5dp"
         android:textSize="19sp"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:layout_below="@+id/nodata"
