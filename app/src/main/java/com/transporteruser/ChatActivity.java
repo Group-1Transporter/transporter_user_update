@@ -49,7 +49,7 @@ import retrofit2.Response;
 public class ChatActivity extends AppCompatActivity {
     ChatActivityBinding binding;
     String transporterId;
-    String currentUserId;
+    String currentUserId ;
     DatabaseReference firebaseDatabase;
     MessageAdapter adapter;
     Transporter transporter;
@@ -61,21 +61,22 @@ public class ChatActivity extends AppCompatActivity {
         binding = ChatActivityBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
         SharedPreferences sp = getSharedPreferences("user",MODE_PRIVATE);
+        currentUserId = sp.getString("userId","");
         name = sp.getString("name","");
         setSupportActionBar(binding.toolbar);
         Intent in = getIntent();
-        currentUserId = FirebaseAuth.getInstance().getUid();
         transporterId = in.getStringExtra("transporterId");
         UserService.UserApi userApi = UserService.getUserApiInstance();
-        Call<Transporter> call = userApi.getCurrentTransporter(transporterId);
         if (NetworkUtility.checkInternetConnection(this)) {
             firebaseDatabase = FirebaseDatabase.getInstance().getReference();
-            call.enqueue(new Callback<Transporter>() {
+            userApi.getCurrentTransporter(transporterId).enqueue(new Callback<Transporter>() {
                 @Override
                 public void onResponse(Call<Transporter> call, Response<Transporter> response) {
                     if(response.code() == 200){
-                        transporter = response.body();
-                        getSupportActionBar().setTitle(transporter.getName());
+                        Transporter transporter = response.body();
+                        setSupportActionBar(binding.toolbar);
+                        binding.tvName.setText(transporter.getName());
+                        Picasso.get().load(transporter.getImageUrl()).into(binding.civUser);
                     }
                 }
 
@@ -120,6 +121,7 @@ public class ChatActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
+                                            notification(msg);
                                             //Toast.makeText(ChatActivity.this, "Message sent.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
@@ -140,6 +142,7 @@ public class ChatActivity extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     Message msg = dataSnapshot.getValue(Message.class);
                     al.add(msg);
+
                     adapter = new MessageAdapter(ChatActivity.this,al);
                     binding.rv.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
@@ -197,7 +200,7 @@ public class ChatActivity extends AppCompatActivity {
             }){
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
-                    String api_key_header_value = "AAAAWv788Wk:APA91bFW0Z_ISKSzu2ZD97ouIZde3jHsaKSvxLG2_adRdmaUCeQ5Jv88XpcNa2o06RruMbRIWF0gYgh6VPYknq-ELrXgIEmp3SVeu3YTH_2cVmEDUT3Jbg1u6N5OxsacPVIFKqkkBhyp";
+                    String api_key_header_value = "Key=AAAAWv788Wk:APA91bFW0Z_ISKSzu2ZD97ouIZde3jHsaKSvxLG2_adRdmaUCeQ5Jv88XpcNa2o06RruMbRIWF0gYgh6VPYknq-ELrXgIEmp3SVeu3YTH_2cVmEDUT3Jbg1u6N5OxsacPVIFKqkkBhyp";
                     Map<String, String> headers = new HashMap<>();
                     headers.put("Content-Type", "application/json");
                     headers.put("Authorization", api_key_header_value);

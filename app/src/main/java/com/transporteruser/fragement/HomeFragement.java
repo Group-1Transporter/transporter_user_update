@@ -50,21 +50,24 @@ public class HomeFragement extends Fragment {
             public void onResponse(Call<ArrayList<Lead>> call, Response<ArrayList<Lead>> response) {
                 pd.dismiss();
                 if(response.code() == 200 ){
-                    if (response.body().isEmpty()){
-                        binding.tv.setVisibility(View.VISIBLE);
-                        binding.nodata.setVisibility(View.VISIBLE);
-                    }
-                    list = response.body();
-                    adapter = new HomeAdapter(list);
-                    binding.rv.setAdapter(adapter);
-                    binding.rv.setLayoutManager(new LinearLayoutManager(context));
-                    adapter.OnHomeClick(new HomeAdapter.OnHomeRecyclerListner() {
-                        @Override
-                        public void onClick(Lead lead, int position, String status) {
-                            deleteLeadCreated(lead,position,status);
-                        }
-                    });
 
+                    list = response.body();
+                    if (list.size() != 0) {
+                        binding.rv.setVisibility(View.VISIBLE);
+                        binding.noData.setVisibility(View.GONE);
+                        adapter = new HomeAdapter(list);
+                        binding.rv.setAdapter(adapter);
+                        binding.rv.setLayoutManager(new LinearLayoutManager(context));
+                        adapter.OnHomeClick(new HomeAdapter.OnHomeRecyclerListner() {
+                            @Override
+                            public void onClick(Lead lead, int position, String status) {
+                                deleteLeadCreated(lead, position, status);
+                            }
+                        });
+                    }else {
+                        binding.rv.setVisibility(View.GONE);
+                        binding.noData.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 

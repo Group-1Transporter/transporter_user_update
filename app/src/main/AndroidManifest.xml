@@ -44,6 +44,13 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".CreateProfileActivity" android:parentActivityName=".SplashScreen" />
         <activity android:name=".ChatActivity"/>
+        <service android:name=".ReceivingPushNotification"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>vb
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

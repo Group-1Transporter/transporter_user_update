@@ -39,8 +39,8 @@ public class ReceivingPushNotification extends FirebaseMessagingService {
             String description = map.get("body");
 
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            String channelId = "My id";
-            String channelName = "My channel";
+            String channelId = "Test channel";
+            String channelName = "Test";
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
                 manager.createNotificationChannel(channel);
