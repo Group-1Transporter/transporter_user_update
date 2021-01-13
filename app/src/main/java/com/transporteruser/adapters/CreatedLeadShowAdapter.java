@@ -44,7 +44,6 @@ public class CreatedLeadShowAdapter extends RecyclerView.Adapter<CreatedLeadShow
         holder.binding.llConfirmLoad.setVisibility(View.GONE);
         String[] deliveryAddress = lead.getDeliveryAddress().split(",");
         String delivery=(deliveryAddress[1]);
-
         String[] pickupAddress = lead.getPickUpAddress().split(",");
         String pickup= (pickupAddress[1]);
         holder.binding.tvCLLocation.setText(pickup+" To "+delivery);

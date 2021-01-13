@@ -1,47 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/tv_cl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="13dp"
-        android:textColor="@color/blue"
-        android:textStyle="bold"
-        android:visibility="gone"
-        android:padding="5dp"
         android:layout_marginTop="4dp"
-        android:textSize="20sp" />
+        android:padding="5dp"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
         android:id="@+id/llCurrentLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_cl"
         android:elevation="20dp"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:visibility="visible">
+
         <androidx.cardview.widget.CardView
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            app:cardCornerRadius="10dp"
-            android:elevation="80dp"
-            app:cardElevation="10dp"
             android:id="@+id/currentv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="13dp"
-            android:padding="25dp">
+            android:elevation="80dp"
+            android:padding="25dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp">
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
                 android:id="@+id/ll2"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <RelativeLayout
+                    android:id="@+id/ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:id="@+id/ll">
+                    android:padding="10dp">
 
                     <ImageView
                         android:id="@+id/a"
@@ -56,15 +62,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
+                        android:layout_marginTop="2dp"
                         android:layout_toRightOf="@id/a"
                         android:paddingLeft="10dp"
-                        android:textStyle="bold"
-                        android:textAllCaps="true"
-                        android:layout_marginTop="2dp"
                         android:singleLine="true"
                         android:text="Indore to Bhopal"
+                        android:textAllCaps="true"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/morevertical"
@@ -73,11 +79,12 @@
                         android:layout_alignParentEnd="true"
                         android:src="@drawable/more" />
                 </RelativeLayout>
+
                 <LinearLayout
+                    android:id="@+id/ll4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/ll4"
                     android:weightSum="1">
 
                     <ImageView
@@ -101,9 +108,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:paddingLeft="4dp"
-                            android:textColor="@color/black"
                             android:singleLine="true"
-                            android:text="Material Type" />
+                            android:text="Material Type"
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:id="@+id/tvCLMaterialType"
@@ -114,6 +121,7 @@
                             android:text="890980877"
                             android:textColor="@color/black" />
                     </LinearLayout>
+
                     <ImageView
                         android:id="@+id/viv"
                         android:layout_width="0dp"
@@ -137,8 +145,8 @@
                             android:layout_marginTop="5dp"
                             android:paddingLeft="4dp"
                             android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:text="Distance" />
+                            android:text="Distance"
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:id="@+id/tvDistance"
@@ -152,53 +160,56 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <RelativeLayout
+                    android:id="@+id/ll5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:id="@+id/ll5"
 
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="6dp">
+                    android:layout_marginBottom="6dp"
+                    android:orientation="horizontal">
+
                     <TextView
+                        android:id="@+id/lastDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="55dp"
+                        android:singleLine="true"
                         android:text="Last Date : "
                         android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:singleLine="true"
-                        android:id="@+id/lastDate"
-                        android:layout_marginLeft="55dp"/>
+                        android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/tvLastDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/lastDate"
                         android:singleLine="true"
-                        android:id="@+id/tvLastDate"
-                        android:textColor="@color/black"
-                        android:text="13/4/2021" />
+                        android:text="13/4/2021"
+                        android:textColor="@color/black" />
+
                     <ImageView
+                        android:id="@+id/llCounter"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:layout_marginBottom="10dp"
-                        android:visibility="visible"
                         android:layout_marginLeft="42dp"
-                        android:id="@+id/llCounter"
                         android:layout_marginRight="15dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_toRightOf="@+id/tvLastDate"
-                        android:src="@drawable/counter"/>
+                        android:src="@drawable/counter"
+                        android:visibility="visible" />
+
                     <TextView
+                        android:id="@+id/tvCounter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:layout_toRightOf="@id/tvLastDate"
                         android:layout_marginLeft="50dp"
-                        android:id="@+id/tvCounter"
                         android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@id/tvLastDate"
                         android:gravity="center"
-                        android:text="10"/>
-
+                        android:text="10"
+                        android:textColor="@color/white" />
 
 
                 </RelativeLayout>
@@ -209,17 +220,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
         android:id="@+id/llConfirmLoad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_cl"
 
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="8dp"
             android:background="@drawable/circle"
+            android:elevation="8dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="10dp"
             app:cardUseCompatPadding="true">
@@ -234,8 +246,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:padding="5dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
 
                     <ImageView
                         android:id="@+id/c"
@@ -250,14 +262,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
+                        android:layout_marginTop="3dp"
                         android:layout_toRightOf="@id/c"
                         android:paddingLeft="10dp"
-                        android:textStyle="bold"
-                        android:textAllCaps="true"
-                        android:layout_marginTop="3dp"
                         android:singleLine="true"
                         android:text="Indore to Bhopal"
-                        android:textColor="@color/black" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
                     <ImageView
                         android:id="@+id/more"
                         android:layout_width="25dp"
@@ -270,9 +283,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:divider="@color/black"
                     android:orientation="horizontal"
-                    android:weightSum="1"
-                    android:divider="@color/black">
+                    android:weightSum="1">
 
                     <ImageView
                         android:id="@+id/uiv"
@@ -283,30 +296,32 @@
                         android:layout_marginTop="4dp"
                         android:layout_weight="0.13"
                         android:src="@drawable/user" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.34"
                         android:layout_marginLeft="6dp"
-                        android:orientation="vertical"
-                        >
+                        android:layout_weight="0.34"
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="3dp"
                             android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:text="Posted By" />
+                            android:text="Posted By"
+                            android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/tvTransporterName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="4dp"
                             android:singleLine="true"
                             android:text="Username"
-                            android:id="@+id/tvTransporterName"
                             android:textColor="@color/black" />
                     </LinearLayout>
+
                     <ImageView
                         android:id="@+id/liv"
                         android:layout_width="0dp"
@@ -315,91 +330,103 @@
                         android:layout_marginLeft="4dp"
                         android:layout_weight="0.13"
                         android:src="@drawable/boxes" />
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.34"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="4dp"
                             android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:text="Material Type" />
+                            android:text="Material Type"
+                            android:textColor="@color/black" />
 
                         <TextView
+                            android:id="@+id/tvMaterialType"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="4dp"
                             android:singleLine="true"
                             android:text="Wood"
-                            android:id="@+id/tvMaterialType"
                             android:textColor="@color/black" />
                     </LinearLayout>
                 </LinearLayout>
-                
-                <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
 
-                 <LinearLayout
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                     android:layout_marginLeft="10dp"
-                    android:orientation="horizontal">
-                     <ImageView
-                         android:layout_width="28dp"
-                         android:layout_height="25dp"
-                         android:background="@drawable/moneyy"/>
-                    <TextView
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
                         android:layout_marginLeft="10dp"
-                        android:singleLine="true"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:text="Amount : " />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:text="3685"
-                        android:layout_gravity="center"
-                        android:id="@+id/tvAmount"
-                        android:textColor="@color/black"/>
-                     <ImageView
-                         android:layout_width="23dp"
-                         android:layout_height="23dp"
-                         android:layout_marginLeft="20dp"
-                         android:layout_marginBottom="6dp"
-                         android:background="@drawable/progress"/>
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:singleLine="true"
-                        android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:text="Status :" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:singleLine="true"
-                        android:textSize="13sp"
-                        android:text="Loaded"
-                        android:layout_gravity="center"
-                        android:id="@+id/tvProgressStatus"
-                        android:textColor="@color/green"/>
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/moneyy" />
 
-                </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="10dp"
+                                android:paddingLeft="5dp"
+                                android:singleLine="true"
+                                android:text="Amount : "
+                                android:textColor="@color/black" />
+
+                            <TextView
+                                android:id="@+id/tvAmount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:singleLine="true"
+                                android:text="3685"
+                                android:textColor="@color/black" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginBottom="6dp"
+                            android:background="@drawable/progress" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:paddingLeft="5dp"
+                            android:singleLine="true"
+                            android:text="Status :"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/tvProgressStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingLeft="5dp"
+                            android:singleLine="true"
+                            android:text="Loaded"
+                            android:textColor="@color/green"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

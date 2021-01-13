@@ -109,6 +109,7 @@ public class BidShowActivity extends AppCompatActivity {
         ReceiveBiddingAlrtdilogBinding binding = ReceiveBiddingAlrtdilogBinding.inflate(LayoutInflater.from(this));
         ab.setView(binding.getRoot());
         ab.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        binding.address.setText(lead.getPickUpAddress()+" To "+lead.getDeliveryAddress());
         binding.tvdate.setText(bid.getEstimatedDate());
         binding.tvRate.setText(""+bid.getAmount());
         binding.tvRemark.setText(bid.getRemark());
@@ -127,7 +128,7 @@ public class BidShowActivity extends AppCompatActivity {
                 lead.setDealLockedWith(bid.getTransporterId());
                 lead.setTransporterName(bid.getTransporterName());
                 lead.setStatus("confirmed");
-                //lead.setAmount(bid.getAmount());
+                lead.setAmount(bid.getAmount());
                 Call<Lead> call=  userApi.updateLead(lead);
 
                 call.enqueue(new Callback<Lead>() {
@@ -180,7 +181,7 @@ public class BidShowActivity extends AppCompatActivity {
             }){
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
-                    String api_key_header_value = "AAAAWv788Wk:APA91bFW0Z_ISKSzu2ZD97ouIZde3jHsaKSvxLG2_adRdmaUCeQ5Jv88XpcNa2o06RruMbRIWF0gYgh6VPYknq-ELrXgIEmp3SVeu3YTH_2cVmEDUT3Jbg1u6N5OxsacPVIFKqkkBhyp";
+                    String api_key_header_value = "Key=AAAAWv788Wk:APA91bFW0Z_ISKSzu2ZD97ouIZde3jHsaKSvxLG2_adRdmaUCeQ5Jv88XpcNa2o06RruMbRIWF0gYgh6VPYknq-ELrXgIEmp3SVeu3YTH_2cVmEDUT3Jbg1u6N5OxsacPVIFKqkkBhyp";
                     Map<String, String> headers = new HashMap<>();
                     headers.put("Content-Type", "application/json");
                     headers.put("Authorization", api_key_header_value);
