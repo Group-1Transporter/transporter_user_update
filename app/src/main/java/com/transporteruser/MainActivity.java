@@ -29,6 +29,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.squareup.picasso.Picasso;
 import com.transporteruser.adapters.HomeAdapter;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         if (isInternetConnected) {
             binding.navDrawer.setItemIconTintList(null);
             binding.bottomNav.setItemIconTintList(null);
+
             toggle = new ActionBarDrawerToggle(this, binding.drawer, binding.toolbar, R.string.open, R.string.close);
             toggle.syncState();
             toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
@@ -84,6 +87,17 @@ public class MainActivity extends AppCompatActivity {
             view.setVisibility(View.VISIBLE);
             getFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragement()).commit();
+            String image = sp.getString("imageUrl","not_found");
+            if(!image.equalsIgnoreCase("not_found"))
+                Picasso.get().load(image).into(binding.profileShow);
+
+            binding.profileShow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this,UpdateProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
             binding.navDrawer.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -296,14 +310,28 @@ public class MainActivity extends AppCompatActivity {
     private void checkUserProfileCreatedOrNot() {
         String status = sp.getString("userId", "not_created");
         if (status.equals("not_created")) {
-            UserService.UserApi userApi = UserService.getUserApiInstance();
+            final String token = FirebaseInstanceId.getInstance().getToken();
+            final UserService.UserApi userApi = UserService.getUserApiInstance();
             Call<User> call = userApi.checkProfile(currentUserId);
             call.enqueue(new Callback<User>() {
                 @Override
                 public void onResponse(Call<User> call, Response<User> response) {
                     if(response.code() == 200){
                         User user = response.body();
-                            saveDataLocally(user);
+                        user.setToken(token);
+                            userApi.updateProfile(user).enqueue(new Callback<User>() {
+                                @Override
+                                public void onResponse(Call<User> call, Response<User> response) {
+                                    if(response.code() == 200){
+                                        saveDataLocally(response.body());
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<User> call, Throwable t) {
+
+                                }
+                            });
                     }else if(response.code() == 404){
                         Toast.makeText(MainActivity.this, "Create Profile", Toast.LENGTH_SHORT).show();
                         sendUserToCreateProfile();

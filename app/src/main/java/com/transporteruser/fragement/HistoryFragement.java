@@ -40,7 +40,6 @@ HistoryFragement extends Fragment {
     SharedPreferences sp = null;
     ProgressDialog pd;
     CreatedLeadShowAdapter createdLeadShowAdapter;
-    HomeAdapter createAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,12 +86,15 @@ HistoryFragement extends Fragment {
                 pd.dismiss();
                 if(response.code() == 200){
                     ArrayList<Lead> leadList = response.body();
-                    if (!leadList.isEmpty()){
+                    if (leadList.size()!= 0){
+                        binding.rv.setVisibility(View.VISIBLE);
+                        binding.noData.setVisibility(View.GONE);
                         createdLeadShowAdapter = new CreatedLeadShowAdapter(leadList);
                         binding.rv.setAdapter(createdLeadShowAdapter);
                         binding.rv.setLayoutManager(new LinearLayoutManager(getContext()));
-                    }
-                    else {
+                    }else {
+                        binding.rv.setVisibility(View.GONE);
+                        binding.noData.setVisibility(View.VISIBLE);
                     }
                 }
             }
@@ -115,10 +117,15 @@ HistoryFragement extends Fragment {
                 pd.dismiss();
                 if(response.code() == 200){
                     ArrayList<Lead> leadList = response.body();
-                    if(!leadList.isEmpty()){
+                    if(leadList.size()!= 0){
+                        binding.rv.setVisibility(View.VISIBLE);
+                        binding.noData.setVisibility(View.GONE);
                         adapter = new CompletedLoadShowAdapter(leadList);
                         binding.rv.setAdapter(adapter);
                         binding.rv.setLayoutManager(new LinearLayoutManager(getContext()));
+                    }else{
+                        binding.rv.setVisibility(View.GONE);
+                        binding.noData.setVisibility(View.VISIBLE);
                     }
 
 
