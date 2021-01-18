@@ -38,7 +38,7 @@
             </RelativeLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:orientation="vertical"
                 android:layout_marginTop="30dp"
                 android:layout_alignParentEnd="true"
@@ -54,10 +54,11 @@
                     android:layout_marginRight="5dp"
                     android:layout_alignParentEnd="true" />
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/check_circle"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/check"
                     android:id="@+id/right"
+                    android:layout_marginTop="10dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
                     android:layout_gravity="center_horizontal"/>
@@ -207,7 +208,7 @@
 
                         style="@style/comfirm_load_textView"
                         android:layout_width="wrap_content"
-                        android:text="Quantity : "
+                        android:text="Weight : "
                         android:textColor="@color/black"
                         android:layout_marginTop="3dp"
                         android:layout_marginLeft="5dp"/>

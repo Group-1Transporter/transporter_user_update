@@ -59,7 +59,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 11);
             }
 
-            binding.btnEdit.setOnClickListener(new View.OnClickListener() {
+            binding.civ.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent in = new Intent();

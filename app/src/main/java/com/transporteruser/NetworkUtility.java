@@ -3,7 +3,11 @@ package com.transporteruser;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.LayoutInflater;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.transporteruser.databinding.NointernentBinding;
 
 public class NetworkUtility  {
     public static boolean checkInternetConnection(Context context){
@@ -14,8 +18,11 @@ public class NetworkUtility  {
             connection=true;
         }
         else {
+
             Toast.makeText(context,"Check Internet Connection",Toast.LENGTH_SHORT).show();
         }
         return connection;
     }
+
+
 }

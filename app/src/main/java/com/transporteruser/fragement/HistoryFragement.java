@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.transporteruser.R;
 import com.transporteruser.adapters.CompletedLoadShowAdapter;
@@ -48,19 +49,30 @@ HistoryFragement extends Fragment {
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         userApi = UserService.getUserApiInstance();
         getCompletedLeads();
-        binding.radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        binding.tb.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.rbCompleted){
-
+            public void onTabSelected(TabLayout.Tab tab) {
+                String title=tab.getText().toString();
+                if (title.equals("Completed Load")){
                     getCompletedLeads();
-
-                }else if(i == R.id.rbCreated){
-                    getCreateLeads();
                 }
+                else if (title.equals("Created Load")){
+                    getCreateLeads();
+
+                }
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-
         return binding.getRoot();
     }
 
