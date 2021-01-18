@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.User;
 import com.transporteruser.databinding.ActivityCreateProfileBinding;
+import com.transporteruser.fragement.HistoryFragement;
 
 import java.io.File;
 import java.security.PKCS12Attribute;
@@ -54,6 +55,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         sp = getSharedPreferences("user",MODE_PRIVATE);
         binding.createProfile.setText("Update Profile");
+        binding.card.setVisibility(View.VISIBLE);
         binding.userName.setText(sp.getString("name",""));
         binding.address.setText(sp.getString("address",""));
         binding.phoneNumber.setText(sp.getString("contactNumber",""));
@@ -61,13 +63,41 @@ public class UpdateProfileActivity extends AppCompatActivity {
         userId=(sp.getString("userId",""));
         Picasso.get().load(imageUrl).into(binding.civ);
 
-        binding.btnEdit.setOnClickListener(new View.OnClickListener() {
+        binding.civ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent();
                 in.setAction(Intent.ACTION_GET_CONTENT);
                 in.setType("image/*");
                 startActivityForResult(in, 1);
+
+            }
+        });
+        binding.addLoad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(UpdateProfileActivity.this,AddLoadActivity.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(in);
+                finish();
+            }
+        });
+        binding.hom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(UpdateProfileActivity.this,MainActivity.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(in);
+                finish();
+            }
+        });
+        binding.histry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(UpdateProfileActivity.this,HistoryFragement.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(in);
+                finish();
 
             }
         });

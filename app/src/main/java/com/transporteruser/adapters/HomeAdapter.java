@@ -32,7 +32,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
     @NonNull
     @Override
     public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CurrentAndConfirmedListBinding binding = CurrentAndConfirmedListBinding.inflate(LayoutInflater.from(parent.getContext()));
+         CurrentAndConfirmedListBinding binding = CurrentAndConfirmedListBinding.inflate(LayoutInflater.from(parent.getContext()));
         return new HomeViewHolder(binding);
     }
 
@@ -68,6 +68,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             String pickup= (pickupAddress[1]);
             holder.binding.tvCLLocation.setText(pickup+" To "+delivery);
             holder.binding.tvCLMaterialType.setText(lead.getTypeOfMaterial());
+
             if (!lead.getBidCount().equalsIgnoreCase("0")) {
                 holder.binding.llCounter.setVisibility(View.VISIBLE);
                 holder.binding.tvCounter.setText("" + lead.getBidCount());
@@ -76,9 +77,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
                 holder.binding.llCounter.setVisibility(View.GONE);
             }
 
-
             holder.binding.tvLastDate.setText(lead.getDateOfCompletion());
-            holder.binding.tvDistance.setText(lead.getKm());
+            holder.binding.tvDistance.setText(lead.getKm()+" km");
         } else{
             currentLoad = false;
             holder.binding.llCurrentLoad.setVisibility(View.GONE);
@@ -93,6 +93,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.HomeViewHolder
             holder.binding.tvMaterialType.setText(lead.getTypeOfMaterial());
             holder.binding.tvProgressStatus.setText(lead.getStatus());
             holder.binding.tvAmount.setText(lead.getAmount());
+            Log.e("message", "onBindViewHolder:========== "+lead.getStatus() );
+
 
         }
 

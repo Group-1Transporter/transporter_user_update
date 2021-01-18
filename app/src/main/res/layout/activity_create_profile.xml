@@ -1,103 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/border_white">
-    <androidx.appcompat.widget.Toolbar
-        style="@style/toolbar"
-        android:id="@+id/toolbar"
-        android:visibility="gone"
-        app:title="Update Profile"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/toolbar"
-        android:background="@color/blue"/>
+        android:layout_height="405dp">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            app:title="Create Profile"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/applogo"
-        android:id="@+id/civ"
-        app:civ_circle_background_color="@color/black"
-        app:civ_border_color="@color/skyblue"
-        app:civ_border_width="2dp"
-        android:layout_marginTop="130dp"
-        android:layout_centerHorizontal="true" />
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="match_parent"
+        <LinearLayout
+            android:background="#2196F3"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:orientation="vertical">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="150dp"
+                android:id="@+id/civ"
+
+                android:layout_height="150dp"
+                android:src="@drawable/user"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:text="vaishanavi Yadav"
+                android:id="@+id/name"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="21sp"/>
+        </LinearLayout>
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="360dp"
+            android:visibility="visible"
+            android:id="@+id/cardd"
+            android:elevation="20dp"
+            android:layout_height="120dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="275dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:layout_gravity="center_horizontal"
+                android:text="Please Create Your Profile"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="360dp"
+            android:visibility="gone"
+            android:id="@+id/card"
+            android:layout_height="120dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="275dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="3">
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Load"
+                        android:textStyle="bold"
+                        android:drawableTop="@drawable/ic_baseline_add_circle_24"
+                        android:textColor="@color/blue"
+                        android:id="@+id/add_load"
+                        android:textSize="20sp"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Home"
+                        android:textStyle="bold"
+                        android:drawableTop="@drawable/ic_baseline_home_24"
+                        android:id="@+id/hom"
+                        android:textColor="@color/blue"
+                        android:textSize="20sp"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="History"
+                        android:textStyle="bold"
+                        android:drawableTop="@drawable/history"
+                        android:id="@+id/histry"
+                        android:textColor="@color/blue"
+                        android:textSize="20sp"
+                        />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/userName"
-        android:backgroundTint="@color/blue"
-        android:layout_marginLeft="220dp"
-        android:id="@+id/btnEdit"
-        android:src="@drawable/ic_round_add_a_photo_24"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:id="@+id/userName"
-        android:hint="Username"
-        android:elevation="7dp"
-        android:drawableEnd="@drawable/ic_baseline_person_24"
-        android:textColor="@color/white"
-        android:background="@drawable/border"
-        android:layout_below="@id/civ"
-        android:padding="10dp"
-        android:textColorHint="@color/white"
-        android:textCursorDrawable="@null"
-        android:layout_marginTop="35dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:inputType="number"
-        android:maxLength="10"
-        android:textColorHint="@color/white"
-        android:elevation="7dp"
-        android:id="@+id/phoneNumber"
-        android:hint="Phone Number"
-        android:drawableEnd="@drawable/phone2"
-        android:textColor="@color/white"
-        android:background="@drawable/border"
-        android:layout_below="@id/userName"
-        android:padding="10dp"
-        android:textCursorDrawable="@null"
-        android:layout_marginTop="20dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:textColorHint="@color/white"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:drawableEnd="@drawable/ic_baseline_home_"
-        android:layout_marginRight="40dp"
-        android:id="@+id/address"
-        android:elevation="7dp"
-        android:lines="3"
-        android:hint="Address"
-        android:textCursorDrawable="@null"
-        android:background="@drawable/border"
-        android:layout_below="@id/phoneNumber"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:layout_marginTop="20dp"/>
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/userName"
+                android:drawableEnd="@drawable/profile"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textColor="@color/black"
+                android:textColorHint="#AEB9C5"
+                android:elevation="10dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/border_white"
+                android:layout_below="@+id/loaddetail"
+                android:layout_marginTop="5dp"
+                android:hint="User Name"
+                android:textSize="15sp"
+                android:padding="10dp"/>
+
+                android:text="Wiliam@gmail.com"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phone_number"
+                android:drawableEnd="@drawable/phone2"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textColor="@color/black"
+                android:textColorHint="#AEB9C5"
+                android:elevation="10dp"
+                android:maxLength="10"
+                android:inputType="phone"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/border_white"
+                android:layout_below="@+id/loaddetail"
+                android:layout_marginTop="5dp"
+                android:hint="Phone Number"
+                android:textSize="15sp"
+                android:padding="10dp"/>
+
+            android:text="Wiliam@gmail.com"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/address"
+                android:drawableEnd="@drawable/ic_baseline_home_"
+
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:textColor="@color/black"
+                android:textColorHint="#AEB9C5"
+                android:elevation="6dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/border_white"
+                android:layout_below="@+id/loaddetail"
+                android:layout_marginTop="5dp"
+                android:hint="address"
+                android:textSize="15sp"
+                android:padding="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gst"
+            android:drawableEnd="@drawable/ic_baseline_home_"
+            android:visibility="gone"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/black"
+            android:textColorHint="#AEB9C5"
+            android:elevation="6dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/borderwhiteblue"
+            android:layout_below="@+id/loaddetail"
+            android:layout_marginTop="5dp"
+            android:hint="GST number"
+            android:textSize="15sp"
+            android:padding="10dp"/>
+
+            android:text="Wiliam@gmail.com"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/aadhar"
+            android:drawableEnd="@drawable/ic_baseline_home_"
+            android:visibility="gone"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/white"
+            android:textColorHint="#AEB9C5"
+            android:elevation="6dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/borderwhiteblue"
+            android:layout_below="@+id/loaddetail"
+            android:layout_marginTop="5dp"
+            android:hint="Addhar"
+            android:textSize="15sp"
+            android:padding="10dp"/>
+        </LinearLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/address"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="35dp"
         android:text="Create Profile"
         android:textStyle="bold"
         android:textSize="15sp"
         android:id="@+id/createProfile"
         android:textColor="@color/white"
-        android:background="@drawable/button_decorator"/>
-</RelativeLayout>
+        android:background="@drawable/button_blue"/>
+
+
+</LinearLayout>
+</ScrollView>

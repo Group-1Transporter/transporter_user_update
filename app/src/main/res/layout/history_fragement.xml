@@ -2,44 +2,46 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RadioGroup
-            android:id="@+id/radio"
+
+        <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:id="@+id/tb"
+            android:background="@color/blue"
+            app:tabTextColor="@color/white"
+            app:tabIndicatorColor="@color/grey"
+            app:tabIndicatorHeight="4dp"
+            app:tabIndicatorFullWidth="false"
+            android:layout_height="wrap_content">
 
-            <RadioButton
-                android:checked="true"
-                android:id="@+id/rbCompleted"
-                android:layout_width="fill_parent"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@null"
-                android:drawableRight="@android:drawable/btn_radio"
-                android:drawablePadding="30dp"
-                android:gravity="start|center_vertical"
-                android:text="Completed Loads"
-                android:textSize="20dp" />
+                android:text="Completed Load" />
 
-            <RadioButton
-                android:id="@+id/rbCreated"
-                android:layout_width="fill_parent"
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:button="@null"
-
-                android:drawableRight="@android:drawable/btn_radio"
-                android:drawablePadding="30dp"
-                android:gravity="start|center_vertical"
-                android:text="Created Loads"
-                android:textSize="20dp" />
+                android:text="Created Load" />
 
 
-        </RadioGroup>
+        </com.google.android.material.tabs.TabLayout>
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/view_pager"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/llt"
+            android:gravity="center">
         <LinearLayout
             android:visibility="gone"
             android:id="@+id/no_data"
@@ -68,12 +70,14 @@
                 android:visibility="visible" />
         </LinearLayout>
 
+
+        </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/radio">
-
+            android:layout_below="@id/tb">
         </androidx.recyclerview.widget.RecyclerView>
+
     </RelativeLayout>
 </ScrollView>
