@@ -2,6 +2,8 @@ package com.transporteruser;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Build;
 import android.widget.Toast;
 
@@ -24,7 +26,8 @@ import retrofit2.http.Body;
 
 public class ReceivingPushNotification extends FirebaseMessagingService {
     String currentUserId;
-
+    Intent intent;
+    PendingIntent pendingIntent;
     @Override
     public void onNewToken(String token) {
         updateToken(token);
@@ -37,7 +40,8 @@ public class ReceivingPushNotification extends FirebaseMessagingService {
             Map<String, String> map = remoteMessage.getData();
             String title = map.get("title");
             String description = map.get("body");
-
+            intent = new Intent(this,MainActivity.class);
+            pendingIntent = PendingIntent.getActivity(this,1,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             String channelId = "Test channel";
             String channelName = "Test";
@@ -49,6 +53,7 @@ public class ReceivingPushNotification extends FirebaseMessagingService {
 
             nb.setContentTitle(title);
             nb.setContentText(description);
+            nb.setContentIntent(pendingIntent);
             nb.setSmallIcon(R.drawable.applogo);
             manager.notify(1, nb.build());
         }catch (Exception e){

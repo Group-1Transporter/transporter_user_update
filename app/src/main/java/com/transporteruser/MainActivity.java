@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -91,6 +92,32 @@ public class MainActivity extends AppCompatActivity {
             if(!image.equalsIgnoreCase("not_found"))
                 Picasso.get().load(image).into(binding.profileShow);
 
+
+            userApi = UserService.getUserApiInstance();
+            userApi.getAllCompletedLeadsByUserId(currentUserId).enqueue(new Callback<ArrayList<Lead>>() {
+                @Override
+                public void onResponse(Call<ArrayList<Lead>> call, Response<ArrayList<Lead>> response) {
+                    if(response.code() == 200) {
+                        ArrayList<Lead> completeList = response.body();
+                        if(completeList.size() != 0) {
+                            for (Lead lead : completeList) {
+                                if (!lead.isRating()) {
+                                    getRatingDialog(lead.getDealLockedWith(), lead.getLeadId());
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<Lead>> call, Throwable t) {
+
+                }
+            });
+
+
+
+
             binding.profileShow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -108,9 +135,11 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this,UpdateProfileActivity.class);
                         startActivity(intent);
                     } else if (id == R.id.home) {
+                        binding.tvToolbarHome.setText("Home");
                         selected = new HomeFragement();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();
                     } else if (id == R.id.history) {
+                        binding.tvToolbarHome.setText("History");
                         selected = new HistoryFragement();
                         getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();
                     }
@@ -172,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
     public void getRatingDialog(final String transporterId, final String leadId){
         final AlertDialog ab = new AlertDialog.Builder(this).create();
         final RatingDialogBinding ratingDialogBinding =  RatingDialogBinding.inflate(LayoutInflater.from(this));
-        setContentView(binding.getRoot());
+        ab.setView(ratingDialogBinding.getRoot());
         ab.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         ratingDialogBinding.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,6 +220,8 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View v) {
 
+                final ProgressDialog pd = new ProgressDialog(MainActivity.this);
+                pd.show();
                 userApi.checkProfile(currentUserId).enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
@@ -219,6 +250,7 @@ public class MainActivity extends AppCompatActivity {
                                                     userApi.updateTransporter(transporter).enqueue(new Callback<Transporter>() {
                                                         @Override
                                                         public void onResponse(Call<Transporter> call, Response<Transporter> response) {
+                                                            pd.dismiss();
                                                             if(response.code() == 200){
                                                                 userApi.createRating(transporterId,leadId,r).enqueue(new Callback<Rating>() {
                                                                     @Override
@@ -231,6 +263,7 @@ public class MainActivity extends AppCompatActivity {
 
                                                                     @Override
                                                                     public void onFailure(Call<Rating> call, Throwable t) {
+                                                                        pd.dismiss();
                                                                         Toast.makeText(MainActivity.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
                                                                     }
                                                                 });
@@ -264,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-
+                        Toast.makeText(createProfileActivity, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -278,12 +311,12 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selected = null;
                 switch (item.getItemId()) {
                     case R.id.home:
+                        binding.tvToolbarHome.setText("Home");
                         selected = new HomeFragement();
-                        binding.toolbar.setTitle("Home");
                         break;
                     case R.id.history:
                         selected = new HistoryFragement();
-                        binding.toolbar.setTitle("History");
+                        binding.tvToolbarHome.setText("History");
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();
