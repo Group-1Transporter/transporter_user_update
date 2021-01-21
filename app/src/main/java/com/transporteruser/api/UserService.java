@@ -57,6 +57,12 @@ public class UserService {
         @GET("/user/{id}")
         public Call<User> checkProfile(@Path("id") String id);
 
+        @GET("/transporter/")
+        public Call<ArrayList<Transporter>> getTransporters();
+
+        @GET("transporter/{transporterId}")
+        public  Call<Transporter> getTransporter (@Path("transporterId") String transporterId);
+
         @GET("lead/create/confirmed/{userId}")
         public Call<ArrayList<Lead>> getCreateAndConfirmed(@Path("userId")String id);
 
@@ -105,8 +111,6 @@ public class UserService {
         @POST("transporter/Update")
         public  Call<Transporter> updateTransporter (@Body Transporter transporter);
 
-        @GET("transporter/{transporterId}")
-        public  Call<Transporter> getTransporter (@Path("transporterId") String transporterId);
 
     }
 }

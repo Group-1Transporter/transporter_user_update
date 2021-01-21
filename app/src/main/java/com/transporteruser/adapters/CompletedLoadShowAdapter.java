@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.transporteruser.api.UserService;
 import com.transporteruser.bean.Lead;
+import com.transporteruser.bean.Transporter;
 import com.transporteruser.databinding.CompletedLoadBinding;
 
 import java.util.ArrayList;
@@ -25,8 +26,10 @@ import retrofit2.Response;
 
 public class CompletedLoadShowAdapter extends RecyclerView.Adapter<CompletedLoadShowAdapter.CompletedViewHolder> {
     ArrayList<Lead> leadList;
+    UserService.UserApi userApi ;
     public CompletedLoadShowAdapter(ArrayList<Lead> leadList){
         this.leadList = leadList;
+        userApi = UserService.getUserApiInstance();
     }
 
     @NonNull
@@ -40,6 +43,20 @@ public class CompletedLoadShowAdapter extends RecyclerView.Adapter<CompletedLoad
     public void onBindViewHolder(@NonNull final CompletedViewHolder holder, int position) {
 
         final Lead lead = leadList.get(position);
+        userApi.getTransporter(lead.getDealLockedWith()).enqueue(new Callback<Transporter>() {
+            @Override
+            public void onResponse(Call<Transporter> call, Response<Transporter> response) {
+                if(response.code() == 200){
+                    holder.binding.tvTransporterName.setText(response.body().getName());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Transporter> call, Throwable t) {
+                Toast.makeText(holder.itemView.getContext(), ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.binding.tvrate.setText(lead.getAmount());
 
         holder.binding.tvDate.setText(lead.getDateOfCompletion());
         holder.binding.tvTypeOfmaterial.setText(lead.getTypeOfMaterial());

@@ -59,6 +59,26 @@ public class Lead implements Serializable {
     @Expose
     private String amount="";
 
+    private boolean rating;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    private boolean active = true;
+
+    public boolean isRating() {
+        return rating;
+    }
+
+    public void setRating(boolean rating) {
+        this.rating = rating;
+    }
+
     public String getUserId() {
         return userId;
     }

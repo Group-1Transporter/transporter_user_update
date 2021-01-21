@@ -52,6 +52,7 @@ public class ChatActivity extends AppCompatActivity {
     String currentUserId ;
     DatabaseReference firebaseDatabase;
     MessageAdapter adapter;
+    String token;
     Transporter transporter;
     ArrayList<Message>al;
     String name;
@@ -74,6 +75,7 @@ public class ChatActivity extends AppCompatActivity {
                 public void onResponse(Call<Transporter> call, Response<Transporter> response) {
                     if(response.code() == 200){
                         Transporter transporter = response.body();
+                        token = transporter.getToken();
                         setSupportActionBar(binding.toolbar);
                         binding.tvName.setText(transporter.getName());
                         Picasso.get().load(transporter.getImageUrl()).into(binding.civUser);
@@ -174,7 +176,6 @@ public class ChatActivity extends AppCompatActivity {
 
 
     private void notification(Message message){
-        String token = transporter.getToken();
         try{
             RequestQueue queue = Volley.newRequestQueue(this);
             String url = "https://fcm.googleapis.com/fcm/send";
